@@ -159,7 +159,7 @@ old/
 .dmypy.json
 dmypy.json
 web/users
-# Pyre type checker
+# Pyre type checkerx
 .pyre/
 
 # pytype static type analyzer
