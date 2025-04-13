@@ -7,52 +7,95 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary-color: #283474;
-            --secondary-color: #3a4aa4;
-            --accent-color: #f9d342;
-            --text-color: #ffffff;
-            --card-color: rgba(58, 74, 164, 0.5);
+            --primary-color: #0A0E1A; /* Darker background for better contrast */
+            --secondary-color: #141E36; /* Darker navy blue secondary background */
+            --tertiary-color: #2D1B69; /* Keeping the refined cosmic purple */
+            --accent-color: #ccffff; /* Keeping bright teal for primary accents */
+            --accent-color-alt: #FF9F5A; /* Brighter amber accent for better contrast */
+            --accent-color-purple: #e1cbf4; /* Brighter purple accent */
+            --accent-color-green: #4EEBC4; /* Brighter aurora green accent */
+            --accent-color-pink: #FF5CAF; /* Brighter nebula pink accent */
+            --text-color: #FFFFFF; /* Keeping white text for contrast */
+            --text-light: #F0F4FA; /* Brighter silver text for better readability */
+            --text-gold: #FFE066; /* Brighter gold text for better visibility */
+            --card-color: rgba(100, 223, 223, 0.12); /* Slightly more opaque teal card background */
+            --card-bg-dark: rgba(20, 30, 54, 0.95); /* Darker navy card background */
+            --card-bg-purple: rgba(45, 27, 105, 0.95); /* More opaque dark purple card background */
+            --neon-glow: 0 0 5px rgba(5, 98, 98, 0.8), 0 0 10px rgba(100, 223, 223, 0.6), 0 0 15px rgba(100, 223, 223, 0.4);
+            --neon-glow-alt: 0 0 5px rgba(255, 159, 90, 0.8), 0 0 10px rgba(255, 159, 90, 0.6), 0 0 15px rgba(255, 159, 90, 0.4);
+            --neon-glow-purple: 0 0 5px rgba(177, 94, 255, 0.8), 0 0 10px rgba(177, 94, 255, 0.6), 0 0 15px rgba(177, 94, 255, 0.4);
+            --neon-glow-green: 0 0 5px rgba(0, 3, 2, 0.8), 0 0 10px rgba(78, 235, 196, 0.6), 0 0 15px rgba(78, 235, 196, 0.4);
+            --neon-glow-pink: 0 0 5px rgba(255, 92, 175, 0.8), 0 0 10px rgba(255, 92, 175, 0.6), 0 0 15px rgba(255, 92, 175, 0.4);
         }
         
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', 'Roboto', sans-serif; /* More modern font */
         }
         
         body {
             background-color: var(--primary-color);
-            color: var(--text-color);
-            line-height: 1.6;
+            background-image: 
+                linear-gradient(rgba(10, 14, 26, 0.95), rgba(10, 14, 26, 0.95)),
+                url('https://example.com/celestial-background.jpg');
+            background-size: cover;
+            background-attachment: fixed;
+            color: var(--text-light);
+            line-height: 1.8;
+            padding-top: 70px;
         }
         
         header {
-            background-color: #1a1a1a;
+            background-color: var(--secondary-color);
+            border-bottom: 1px solid var(--accent-color-purple);
             padding: 1rem 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            position: sticky;
+            position: fixed;
+            width: 100%;
             top: 0;
             z-index: 100;
+            box-shadow: 0 2px 10px rgba(157, 114, 255, 0.2);
+            transition: transform 0.3s ease;
+        }
+        
+        .header-hidden {
+            transform: translateY(-100%);
         }
         
         .logo {
             font-size: 1.5rem;
             font-weight: bold;
-            color: var(--text-color);
+            color: var(--accent-color-purple);
             text-decoration: none;
+            text-shadow: var(--neon-glow-purple);
+            letter-spacing: 2px;
+            animation: pulse 3s infinite;
         }
         
         .contact-btn {
-            background-color: #4285f4;
-            color: white;
-            border: none;
+            background-color: transparent;
+            color: var(--accent-color-green);
+            border: 1px solid var(--accent-color-green);
             padding: 0.5rem 1rem;
-            border-radius: 4px;
+            border-radius: 0;
             cursor: pointer;
             font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .contact-btn:hover {
+            background-color: var(--accent-color-green);
+            color: var(--primary-color);
+            box-shadow: var(--neon-glow-green);
+            transform: translateY(-3px);
         }
         
         .hero {
@@ -63,21 +106,97 @@
             align-items: center;
             text-align: center;
             padding: 2rem 5%;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(45deg, rgba(157, 114, 255, 0.1) 0%, transparent 70%),
+                linear-gradient(-45deg, rgba(100, 255, 218, 0.1) 0%, transparent 70%);
+            z-index: -1;
         }
         
         .hero h1 {
-            font-size: 3rem;
+            font-size: 3.5rem;
             margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            position: relative;
         }
         
         .hero h1 span {
-            color: var(--accent-color);
+            color: var(--accent-color-purple);
+            text-shadow: var(--neon-glow-purple);
         }
         
         .hero p {
             font-size: 1.2rem;
             max-width: 800px;
             margin: 0 auto;
+            border-left: 3px solid var(--accent-color-purple);
+            border-right: 3px solid var(--accent-color-green);
+            padding: 1rem 2rem;
+            background-color: rgba(10, 25, 47, 0.8);
+            color: var(--text-light);
+        }
+        
+        .hero-subscribe {
+            margin-top: 2rem;
+            border-top: 1px solid var(--accent-color-pink);
+            padding-top: 1.5rem;
+        }
+        
+        .hero-subscribe h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: var(--accent-color-pink);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .subscribe-form {
+            display: flex;
+            max-width: 100%;
+        }
+        
+        .subscribe-form input {
+            flex: 1;
+            padding: 0.8rem 1rem;
+            background-color: rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--accent-color-pink);
+            color: var(--text-color);
+            font-family: 'Courier New', monospace;
+        }
+        
+        .subscribe-form input:focus {
+            outline: none;
+            box-shadow: var(--neon-glow-pink);
+        }
+        
+        .subscribe-btn {
+            background-color: transparent;
+            color: var(--accent-color-pink);
+            border: 1px solid var(--accent-color-pink);
+            border-left: none;
+            padding: 0.8rem 1.5rem;
+            cursor: pointer;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+        
+        .subscribe-btn:hover {
+            background-color: var(--accent-color-pink);
+            color: var(--primary-color);
+            box-shadow: var(--neon-glow-pink);
         }
         
         .features {
@@ -90,35 +209,56 @@
         
         .feature-card {
             background-color: var(--card-color);
-            border-radius: 8px;
+            border: 1px solid var(--accent-color);
+            border-radius: 0;
             padding: 2rem;
             text-align: center;
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-color-purple), var(--accent-color-green));
         }
         
         .feature-card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-8px);
+            box-shadow: var(--neon-glow-purple);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
         
         .feature-icon {
             font-size: 2.5rem;
-            color: var(--accent-color);
+            color: var(--accent-color-green);
             margin-bottom: 1rem;
+            text-shadow: var(--neon-glow-green);
         }
         
         .feature-card h3 {
             font-size: 1.5rem;
             margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
         
         .feature-card p {
             font-size: 0.9rem;
+            color: var(--text-color);
         }
         
         footer {
-            background-color: #1a1a1a;
+            background-color: rgba(10, 25, 47, 0.95);
+            border-top: 1px solid var(--accent-color-purple);
             padding: 2rem 5%;
             text-align: center;
+            color: var(--text-light);
         }
         
         .social-links {
@@ -129,40 +269,59 @@
         }
         
         .social-links a {
-            color: var(--text-color);
+            color: var(--text-light);
             font-size: 1.5rem;
-            transition: color 0.3s ease;
+            transition: color 0.3s ease, text-shadow 0.3s ease;
         }
         
         .social-links a:hover {
-            color: var(--accent-color);
+            color: var(--accent-color-purple);
+            text-shadow: var(--neon-glow-purple);
         }
         
         .cta-section {
             padding: 4rem 5%;
             text-align: center;
-            background-color: var(--secondary-color);
+            background-color: var(--tertiary-color);
+            background-image: linear-gradient(rgba(46, 23, 96, 0.85), rgba(10, 17, 40, 0.85)), 
+                              url('https://example.com/celestial-stars.jpg');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            border-top: 1px solid var(--accent-color-alt);
+            border-bottom: 1px solid var(--accent-color-purple);
         }
         
         .cta-section h2 {
-            font-size: 2rem;
+            font-size: 2.5rem;
             margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: var(--neon-glow-alt);
+            color: var(--text-gold);
         }
         
         .cta-btn {
-            background-color: var(--accent-color);
-            color: var(--primary-color);
-            border: none;
+            background-color: transparent;
+            color: var(--accent-color-alt);
+            border: 1px solid var(--accent-color-alt);
             padding: 0.8rem 2rem;
             font-size: 1.1rem;
-            border-radius: 4px;
+            border-radius: 0;
             cursor: pointer;
             font-weight: bold;
-            transition: background-color 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
         
         .cta-btn:hover {
-            background-color: #e9c332;
+            background-color: var(--accent-color-alt);
+            color: var(--primary-color);
+            box-shadow: var(--neon-glow-alt);
+            transform: translateY(-3px);
         }
         
         @media (max-width: 768px) {
@@ -178,7 +337,21 @@
         /* Events Section Styles */
         .events-section {
             padding: 4rem 5%;
-            background-color: #1e2a5a;
+            background-color: var(--primary-color);
+            position: relative;
+        }
+        
+        .events-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(0deg, rgba(157, 114, 255, 0.05) 0%, transparent 50%),
+                linear-gradient(90deg, rgba(100, 255, 218, 0.05) 0%, transparent 50%);
+            z-index: -1;
         }
         
         .events-section h2 {
@@ -186,6 +359,9 @@
             text-align: center;
             margin-bottom: 2.5rem;
             color: var(--text-color);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: var(--neon-glow-purple);
         }
         
         .events-container {
@@ -197,15 +373,34 @@
         }
         
         .event-card {
-            background-color: #111827;
-            border-radius: 8px;
+            background-color: var(--card-bg-dark);
+            border: 1px solid var(--accent-color-purple);
+            border-radius: 0;
             overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .event-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--neon-glow-purple);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
         
         .event-image {
             height: 200px;
             overflow: hidden;
+            position: relative;
+        }
+        
+        .event-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(157, 114, 255, 0.2), transparent);
         }
         
         .event-image img {
@@ -213,6 +408,7 @@
             height: 100%;
             object-fit: cover;
             transition: transform 0.3s ease;
+            filter: saturate(1.2) contrast(1.1);
         }
         
         .event-card:hover .event-image img {
@@ -221,6 +417,7 @@
         
         .event-details {
             padding: 1.5rem;
+            border-top: 2px solid var(--accent-color-purple);
         }
         
         .event-details h3 {
@@ -229,92 +426,143 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-light);
+        }
+        
+        .event-details h3 i {
+            color: var(--accent-color-purple);
         }
         
         .event-details p {
             margin-bottom: 1.5rem;
             font-size: 0.9rem;
-            color: #d1d5db;
+            color: var(--text-light);
         }
         
         .rsvp-btn {
-            background-color: #4285f4;
-            color: white;
-            border: none;
+            background-color: transparent;
+            color: var(--accent-color-green);
+            border: 1px solid var(--accent-color-green);
             padding: 0.5rem 2rem;
-            border-radius: 4px;
+            border-radius: 0;
             cursor: pointer;
             font-weight: 500;
             width: 100%;
-            transition: background-color 0.3s ease;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
         
         .rsvp-btn:hover {
-            background-color: #3b77db;
+            background-color: var(--accent-color-green);
+            color: var(--primary-color);
+            box-shadow: var(--neon-glow-green);
+            transform: translateY(-3px);
         }
         
         /* Reading Group Section Styles */
-        .reading-group-section {
+        .community-section {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            background-color: #111827;
+            background-color: rgba(10, 17, 40, 0.8);
+            border-top: 1px solid var(--accent-color-pink);
+            border-bottom: 1px solid var(--accent-color-green);
         }
         
-        .reading-group-content {
+        .community-content {
             padding: 4rem;
             display: flex;
             flex-direction: column;
             justify-content: center;
+            position: relative;
+            overflow: hidden;
+            background-color: var(--card-bg-purple);
         }
         
-        .reading-group-content h2 {
+        .community-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(255, 97, 166, 0.1), transparent);
+            z-index: -1;
+        }
+        
+        .community-content h2 {
             font-size: 2.5rem;
             margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: var(--neon-glow-pink);
+            color: var(--accent-color-pink);
         }
         
-        .reading-group-content p {
+        .community-content p {
             margin-bottom: 2rem;
             font-size: 1.1rem;
-            color: #d1d5db;
+            color: var(--text-light);
+            border-left: 2px solid var(--accent-color-pink);
+            padding-left: 1rem;
         }
         
-        .reading-group-image {
+        .community-image {
             overflow: hidden;
+            position: relative;
         }
         
-        .reading-group-image img {
+        .community-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(100, 255, 218, 0.2), transparent);
+        }
+        
+        .community-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            filter: saturate(1.2) contrast(1.1) hue-rotate(-10deg);
         }
         
         .join-btn {
-            background-color: var(--accent-color);
-            color: #111827;
-            border: none;
+            background-color: transparent;
+            color: var(--accent-color-pink);
+            border: 1px solid var(--accent-color-pink);
             padding: 0.8rem 2rem;
-            border-radius: 4px;
+            border-radius: 0;
             cursor: pointer;
             font-weight: bold;
             align-self: flex-start;
-            transition: background-color 0.3s ease;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
         
         .join-btn:hover {
-            background-color: #e9c332;
+            background-color: var(--accent-color-pink);
+            color: var(--primary-color);
+            box-shadow: var(--neon-glow-pink);
+            transform: translateY(-3px);
         }
         
         @media (max-width: 768px) {
-            .reading-group-section {
+            .community-section {
                 grid-template-columns: 1fr;
             }
             
-            .reading-group-content {
+            .community-content {
                 padding: 2rem;
                 order: 2;
             }
             
-            .reading-group-image {
+            .community-image {
                 order: 1;
                 height: 300px;
             }
@@ -323,7 +571,21 @@
         /* Testimonials Section Styles */
         .testimonials-section {
             padding: 4rem 5%;
-            background-color: #1e2a5a;
+            background-color: var(--primary-color);
+            position: relative;
+        }
+        
+        .testimonials-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(0deg, rgba(100, 255, 218, 0.05) 0%, transparent 50%),
+                linear-gradient(90deg, rgba(255, 97, 166, 0.05) 0%, transparent 50%);
+            z-index: -1;
         }
         
         .testimonials-section h2 {
@@ -331,6 +593,9 @@
             text-align: center;
             margin-bottom: 3rem;
             color: var(--text-color);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: var(--neon-glow-green);
         }
         
         .testimonials-container {
@@ -342,10 +607,30 @@
         }
         
         .testimonial-card {
-            background-color: #111827;
-            border-radius: 8px;
+            background-color: var(--card-bg-dark);
+            border: 1px solid var(--accent-color-green);
+            border-radius: 0;
             padding: 1.5rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .testimonial-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--accent-color-green), var(--accent-color-purple));
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--neon-glow-green);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
         
         .testimonial-header {
@@ -357,37 +642,63 @@
         .testimonial-avatar {
             width: 50px;
             height: 50px;
-            border-radius: 50%;
+            border-radius: 0;
             overflow: hidden;
             margin-right: 1rem;
+            border: 1px solid var(--accent-color-green);
         }
         
         .testimonial-avatar img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            filter: grayscale(50%) contrast(1.2);
         }
         
         .testimonial-author h3 {
             font-size: 1.1rem;
             margin-bottom: 0.2rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-light);
         }
         
         .testimonial-author p {
             font-size: 0.8rem;
-            color: #9ca3af;
+            color: var(--accent-color-green);
         }
         
         .testimonial-content p {
             font-size: 0.9rem;
             line-height: 1.6;
-            color: #d1d5db;
+            color: var(--text-light);
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            margin-bottom: 0.5rem;
+        }
+        
+        .read-more {
+            color: var(--accent-color-green);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+        
+        .read-more:hover {
+            color: var(--accent-color-pink);
+            text-shadow: var(--neon-glow-pink);
         }
         
         /* Founders Section Styles */
         .founders-section {
             padding: 4rem 5%;
-            background-color: #0c111b;
+            background-color: rgba(10, 17, 40, 0.8);
+            border-top: 1px solid var(--accent-color-purple);
         }
         
         .founders-section h2 {
@@ -395,6 +706,9 @@
             text-align: center;
             margin-bottom: 3rem;
             color: var(--text-color);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: var(--neon-glow-alt);
         }
         
         .founders-container {
@@ -406,42 +720,73 @@
         }
         
         .founder-card {
-            background-color: #111827;
-            border-radius: 8px;
+            background-color: var(--card-bg-dark);
+            border: 1px solid var(--accent-color-alt);
+            border-radius: 0;
             overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .founder-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--neon-glow-alt);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
         
         .founder-image {
             height: 250px;
             overflow: hidden;
+            position: relative;
+        }
+        
+        .founder-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(230, 199, 156, 0.2), transparent);
         }
         
         .founder-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            filter: saturate(1.2) contrast(1.1) hue-rotate(-10deg);
         }
         
         .founder-details {
             padding: 1.5rem;
+            border-top: 2px solid var(--accent-color-alt);
         }
         
         .founder-details h3 {
             font-size: 1.3rem;
             margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-light);
         }
         
         .founder-title {
             font-size: 0.9rem;
-            color: var(--accent-color);
+            color: var(--accent-color-alt);
             margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
         
         .founder-bio {
             font-size: 0.9rem;
             line-height: 1.6;
-            color: #d1d5db;
+            color: var(--text-light);
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            margin-bottom: 0.5rem;
         }
         
         @media (max-width: 768px) {
@@ -450,192 +795,1535 @@
                 grid-template-columns: 1fr;
             }
         }
+        
+        /* New navigation styles */
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+        
+        .nav-menu a {
+            color: var(--text-color);
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            transition: color 0.3s ease, text-shadow 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-menu a:hover {
+            color: var(--accent-color-purple);
+            text-shadow: var(--neon-glow-purple);
+        }
+        
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-color-purple);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+        
+        /* Mobile menu toggle */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-color);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Content width container */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .narrow-container {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        /* Update existing sections to use containers */
+        .features,
+        .events-container,
+        .testimonials-container,
+        .founders-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 90%;
+        }
+        
+        /* Mobile responsive navigation */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+            
+            .nav-menu {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                height: 100vh;
+                background-color: rgba(0, 0, 0, 0.95);
+                flex-direction: column;
+                justify-content: center;
+                padding: 2rem;
+                transition: right 0.3s ease;
+                z-index: 200;
+                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.5);
+            }
+            
+            .nav-menu.active {
+                right: 0;
+            }
+            
+            .nav-menu a {
+                font-size: 1.2rem;
+                padding: 1rem 0;
+            }
+            
+            .hero p {
+                max-width: 90%;
+            }
+            
+            .menu-toggle:focus {
+                outline: none;
+            }
+            
+            .menu-toggle i {
+                transition: transform 0.3s ease;
+            }
+            
+            .menu-toggle.active i {
+                transform: rotate(90deg);
+            }
+        }
+        
+        /* Programs Section Styles */
+        .programs-section {
+            padding: 4rem 5%;
+            background-color: var(--primary-color);
+            position: relative;
+        }
+        
+        .programs-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(0deg, rgba(157, 114, 255, 0.05) 0%, transparent 50%),
+                linear-gradient(90deg, rgba(100, 255, 218, 0.05) 0%, transparent 50%);
+            z-index: -1;
+        }
+        
+        .programs-section h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 2.5rem;
+            color: var(--text-color);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: var(--neon-glow-purple);
+        }
+        
+        .programs-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .program-card {
+            background-color: var(--card-color);
+            border: 1px solid var(--accent-color-purple);
+            border-radius: 0;
+            padding: 2rem;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            text-decoration: none;
+            color: var(--text-color);
+        }
+        
+        .program-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-color-purple), var(--accent-color-green));
+        }
+        
+        .program-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--neon-glow-purple);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .program-icon {
+            font-size: 2.5rem;
+            color: var(--accent-color-purple);
+            margin-bottom: 1rem;
+            text-shadow: var(--neon-glow-purple);
+        }
+        
+        .program-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .program-card p {
+            font-size: 0.9rem;
+            color: var(--text-color);
+            margin-bottom: 1.5rem;
+        }
+        
+        .program-link {
+            color: var(--accent-color-purple);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+        
+        .program-link i {
+            margin-left: 0.5rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .program-card:hover .program-link {
+            color: var(--accent-color-green);
+        }
+        
+        .program-card:hover .program-link i {
+            transform: translateX(5px);
+        }
+        
+        @media (max-width: 992px) {
+            .programs-grid {
+                grid-template-columns: repeat(2, 1fr);
+                grid-template-rows: repeat(3, 1fr);
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .programs-grid {
+                grid-template-columns: 1fr;
+                grid-template-rows: repeat(6, 1fr);
+            }
+        }
+        
+        /* Smooth scrolling for anchor links */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Add subtle animations */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .logo {
+            animation: pulse 3s infinite;
+        }
+        
+        /* Improved focus states for accessibility */
+        a:focus, button:focus {
+            outline: 2px solid var(--accent-color-purple);
+            outline-offset: 3px;
+        }
+        
+        /* Better spacing between sections */
+        section {
+            padding: 5rem 5%;
+            margin-bottom: 2rem;
+        }
+        
+        /* Updated Hero Section Styles */
+        .hero-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+            gap: 2rem;
+        }
+        
+        .hero-image {
+            flex: 1;
+            max-width: 45%;
+            border: 1px solid var(--accent-color-purple);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(157, 114, 255, 0.2), transparent);
+        }
+        
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            filter: saturate(1.2) contrast(1.1);
+            transition: transform 0.5s ease;
+        }
+        
+        .hero-image:hover img {
+            transform: scale(1.05);
+        }
+        
+        .hero-content {
+            flex: 1;
+            max-width: 55%;
+            text-align: left;
+        }
+        
+        .hero-points {
+            list-style: none;
+            margin: 1.5rem 0;
+            padding: 0;
+        }
+        
+        .hero-points li {
+            position: relative;
+            padding-left: 2rem;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            line-height: 1.6;
+        }
+        
+        .hero-points li::before {
+            content: '>';
+            position: absolute;
+            left: 0;
+            color: var(--accent-color-purple);
+            font-weight: bold;
+            text-shadow: var(--neon-glow-purple);
+        }
+        
+        @media (max-width: 768px) {
+            .hero-container {
+                flex-direction: column;
+            }
+            
+            .hero-image, .hero-content {
+                max-width: 100%;
+            }
+            
+            .hero-points li {
+                font-size: 1rem;
+            }
+        }
+        
+        /* New styles for hero social links */
+        .hero-social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            padding: 1rem 0;
+            background-color: rgba(10, 25, 47, 0.8);
+            border-top: 1px solid var(--accent-color-purple);
+        }
+        
+        .hero-social-links a {
+            color: var(--text-light);
+            font-size: 1.5rem;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+        
+        .hero-social-links a:hover {
+            color: var(--accent-color-pink);
+            text-shadow: var(--neon-glow-pink);
+            transform: translateY(-3px);
+        }
+        
+        @media (max-width: 768px) {
+            .hero-social-links {
+                padding: 0.8rem 0;
+            }
+            
+            .hero-social-links a {
+                font-size: 1.3rem;
+            }
+        }
+        
+        /* Calendar Styles */
+        .calendar-container {
+            background-color: var(--card-bg-dark);
+            border: 1px solid var(--accent-color-purple);
+            max-width: 600px;
+            
+            box-shadow: var(--neon-glow-purple);
+            overflow: hidden;
+        }
+        
+        .calendar-header {
+            background-color: var(--tertiary-color);
+            padding: 1rem;
+            text-align: center;
+            border-bottom: 1px solid var(--accent-color-purple);
+        }
+        
+        .calendar-header h2 {
+            color: var(--accent-color-purple);
+            margin: 0;
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: var(--neon-glow-purple);
+        }
+        
+        .calendar-weekdays {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            background-color: var(--secondary-color);
+            border-bottom: 1px solid var(--accent-color-purple);
+        }
+        
+        .calendar-weekdays div {
+            padding: 0.5rem;
+            text-align: center;
+            font-weight: bold;
+            color: var(--text-light);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+        
+        .calendar-days {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            grid-template-rows: repeat(5, 1fr);
+            background-color: rgba(28, 37, 65, 0.7);
+        }
+        
+        .calendar-days .day, .calendar-days .empty {
+            padding: 1rem;
+            text-align: center;
+            border: 1px solid rgba(157, 114, 255, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .calendar-days .day {
+            cursor: pointer;
+        }
+        
+        .calendar-days .day:hover {
+            background-color: rgba(157, 114, 255, 0.2);
+            transform: scale(1.05);
+            z-index: 10;
+            box-shadow: var(--neon-glow-purple);
+        }
+        
+        .calendar-days .event-day {
+            color: var(--accent-color-green);
+            font-weight: bold;
+            position: relative;
+        }
+        
+        .calendar-days .event-day::after {
+            content: '';
+            position: absolute;
+            bottom: 5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 5px;
+            height: 5px;
+            background-color: var(--accent-color-green);
+            border-radius: 50%;
+            box-shadow: var(--neon-glow-green);
+        }
+        
+        .calendar-days .event-day:hover::after {
+            background-color: var(--accent-color-pink);
+            box-shadow: var(--neon-glow-pink);
+        }
+        
+        @media (max-width: 768px) {
+            .calendar-container {
+                max-width: 90%;
+            }
+            
+            .calendar-days .day, .calendar-days .empty {
+                padding: 0.5rem;
+            }
+        }
+        
+        /* Updated Hero Section with Calendar */
+        .hero {
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem 5%;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-calendar-container {
+            display: flex;
+            width: 100%;
+            max-width: 1200px;
+            gap: 2rem;
+            margin: 0 auto;
+            align-items: stretch;
+        }
+        
+        .event-description-area {
+            flex: 1;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .event-card-modern {
+            background-color: var(--card-bg-dark);
+            border: 1px solid var(--accent-color-purple);
+            border-radius: 10px;
+            overflow: hidden;
+            padding: 1.5rem;
+            position: relative;
+            box-shadow: var(--neon-glow-purple);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        
+        .event-number {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background-color: var(--accent-color);
+            color: var(--primary-color);
+            font-weight: bold;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            font-size: 1.2rem;
+            box-shadow: var(--neon-glow);
+        }
+        
+        .event-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            margin-top: -1.5rem;
+        }
+        
+        .event-icon {
+            font-size: 2.5rem;
+            margin-right: 1rem;
+        }
+        
+        .event-card-modern h2 {
+            font-size: 1.8rem;
+            color: var(--accent-color);
+            margin: 0;
+            text-shadow: var(--neon-glow);
+            letter-spacing: 1px;
+        }
+        
+        .event-datetime {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+            background-color: rgba(100, 223, 223, 0.1);
+            padding: 0.8rem;
+            border-radius: 5px;
+        }
+        
+        .calendar-icon {
+            font-size: 1.5rem;
+            margin-right: 1rem;
+        }
+        
+        .datetime-text {
+            font-size: 1.2rem;
+            color: var(--text-light);
+        }
+        
+        .event-description-modern {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+        
+        .why-section, .where-section, .rsvp-section {
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .emoji {
+            font-size: 1.5rem;
+            margin-right: 0.8rem;
+            min-width: 30px;
+        }
+        
+        .label {
+            font-weight: bold;
+            color: var(--accent-color-alt);
+            margin-right: 0.5rem;
+            min-width: 60px;
+        }
+        
+        .content {
+            color: var(--text-light);
+            flex: 1;
+        }
+        
+        .rsvp-button {
+            display: inline-block;
+            background-color: var(--accent-color-green);
+            color: var(--primary-color);
+            padding: 0.5rem 1.5rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: var(--neon-glow-green);
+        }
+        
+        .rsvp-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 10px rgba(76, 201, 176, 0.9);
+        }
+        
+        @media (max-width: 768px) {
+            .event-card-modern h2 {
+                font-size: 1.5rem;
+            }
+            
+            .event-icon, .emoji {
+                font-size: 1.3rem;
+            }
+            
+            .datetime-text {
+                font-size: 1rem;
+            }
+            
+            .event-number {
+                font-size: 1rem;
+                padding: 0.3rem 0.8rem;
+            }
+        }
+        
+        .calendar-wrapper {
+            flex: 1;
+        }
+        
+        .calendar-container {
+            background-color: var(--card-bg-dark);
+            border: 1px solid var(--accent-color-purple);
+            width: 100%;
+            height: 100%;
+            box-shadow: var(--neon-glow-purple);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .calendar-days {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            grid-template-rows: repeat(5, 1fr);
+            background-color: rgba(28, 37, 65, 0.7);
+            flex: 1;
+        }
+        
+        .calendar-days .day, .calendar-days .empty {
+            padding: 1rem;
+            text-align: center;
+            border: 1px solid rgba(157, 114, 255, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .calendar-days .day {
+            cursor: pointer;
+        }
+        
+        .calendar-days .day:hover {
+            background-color: rgba(157, 114, 255, 0.2);
+            transform: scale(1.05);
+            z-index: 10;
+            box-shadow: var(--neon-glow-purple);
+        }
+        
+        .calendar-days .day.selected {
+            background-color: rgba(157, 114, 255, 0.3);
+            box-shadow: var(--neon-glow-purple);
+        }
+        
+        .calendar-days .event-day {
+            color: var(--accent-color-green);
+            font-weight: bold;
+            position: relative;
+        }
+        
+        .calendar-days .event-day::after {
+            content: '';
+            position: absolute;
+            bottom: 5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 5px;
+            height: 5px;
+            background-color: var(--accent-color-green);
+            border-radius: 50%;
+            box-shadow: var(--neon-glow-green);
+        }
+        
+        .calendar-days .event-day:hover::after {
+            background-color: var(--accent-color-pink);
+            box-shadow: var(--neon-glow-pink);
+        }
+        
+        @media (max-width: 992px) {
+            .hero-calendar-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .event-description-area, .calendar-wrapper {
+                width: 100%;
+                max-width: 600px;
+            }
+            
+            .event-card-modern, .calendar-container {
+                height: auto;
+                min-height: 400px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .calendar-container {
+                max-width: 100%;
+            }
+            
+            .calendar-days .day, .calendar-days .empty {
+                padding: 0.5rem;
+            }
+            
+            .event-details-container {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            
+            .event-date {
+                margin-bottom: 1rem;
+            }
+        }
+        
+        .community-options {
+            list-style: none;
+            margin: 2rem 0;
+            padding: 0;
+        }
+        
+        .community-options li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(255, 92, 175, 0.3);
+        }
+        
+        .community-options li:last-child {
+            border-bottom: none;
+        }
+        
+        .option-text {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            position: relative;
+            padding-left: 1.5rem;
+        }
+        
+        .option-text::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--accent-color-pink);
+            font-size: 1.5rem;
+            line-height: 1;
+        }
+        
+        .community-btn {
+            background-color: transparent;
+            color: var(--accent-color-pink);
+            border: 1px solid var(--accent-color-pink);
+            padding: 0.5rem 1.2rem;
+            border-radius: 0;
+            cursor: pointer;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+        
+        .community-btn:hover {
+            background-color: var(--accent-color-pink);
+            color: var(--primary-color);
+            box-shadow: var(--neon-glow-pink);
+            transform: translateY(-3px);
+        }
+        
+        @media (max-width: 768px) {
+            .community-options li {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+            
+            .community-btn {
+                align-self: flex-start;
+            }
+        }
+        
+        /* New styles for improved community section */
+        .community-options {
+            list-style: none;
+            margin: 2rem 0;
+            padding: 0;
+        }
+        
+        .community-options > li {
+            background-color: rgba(45, 27, 105, 0.5);
+            border: 1px solid var(--accent-color-pink);
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .community-options > li:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--neon-glow-pink);
+        }
+        
+        .option-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .option-text {
+            font-size: 1.2rem;
+            color: var(--accent-color-pink);
+            font-weight: 600;
+            padding-left: 0;
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+        
+        .option-text::before {
+            content: none;
+        }
+        
+        .option-text i {
+            font-size: 1.5rem;
+        }
+        
+        .option-details {
+            margin-top: 0.5rem;
+            padding-left: 2.3rem;
+            color: var(--text-light);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        .event-dates {
+            margin-top: 1rem;
+            padding: 1rem;
+            background-color: rgba(255, 92, 175, 0.1);
+            border-left: 3px solid var(--accent-color-pink);
+        }
+        
+        .event-dates h4 {
+            color: var(--accent-color-pink);
+            margin-bottom: 0.8rem;
+            font-size: 1rem;
+            letter-spacing: 1px;
+        }
+        
+        .event-dates ul {
+            list-style: none;
+            padding-left: 1rem;
+        }
+        
+        .event-dates li {
+            margin-bottom: 0.5rem;
+            position: relative;
+            padding-left: 1.5rem;
+            color: var(--text-light);
+            border-bottom: none;
+            display: block;
+        }
+        
+        .event-dates li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--accent-color-green);
+        }
+        
+        .community-btn {
+            align-self: flex-start;
+            margin-top: 0.5rem;
+            padding: 0.6rem 1.5rem;
+            border-radius: 4px;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+        }
+        
+        @media (max-width: 768px) {
+            .option-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .community-btn {
+                width: 100%;
+                text-align: center;
+            }
+        }
+        
+        /* Updated Community Section Styles */
+        .community-section {
+            padding: 4rem 5%;
+            background-color: var(--tertiary-color);
+            background-image: linear-gradient(rgba(46, 23, 96, 0.85), rgba(10, 17, 40, 0.85)), 
+                              url('https://example.com/celestial-stars.jpg');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            border-top: 1px solid var(--accent-color-alt);
+            border-bottom: 1px solid var(--accent-color-purple);
+        }
+        
+        .community-section h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 2.5rem;
+            color: var(--text-color);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: var(--neon-glow-purple);
+        }
+        
+        .community-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            justify-content: center;
+        }
+        
+        .community-card {
+            background-color: var(--card-color);
+            border: 1px solid var(--accent-color-pink);
+            border-radius: 0;
+            padding: 2rem;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            max-width: 400px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        
+        .community-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-color-pink), var(--accent-color-purple));
+        }
+        
+        .community-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--neon-glow-pink);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .community-icon {
+            font-size: 2.5rem;
+            color: var(--accent-color-pink);
+            margin-bottom: 1rem;
+            text-shadow: var(--neon-glow-pink);
+        }
+        
+        .community-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .community-card p {
+            font-size: 0.9rem;
+            color: var(--text-color);
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+        
+        .community-btn {
+            background-color: transparent;
+            color: var(--accent-color-pink);
+            border: 1px solid var(--accent-color-pink);
+            padding: 0.8rem 1.5rem;
+            border-radius: 0;
+            cursor: pointer;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            display: inline-block;
+            text-decoration: none;
+        }
+        
+        .community-btn:hover {
+            background-color: var(--accent-color-pink);
+            color: var(--primary-color);
+            box-shadow: var(--neon-glow-pink);
+            transform: translateY(-3px);
+        }
+        
+        @media (max-width: 768px) {
+            .community-grid {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 <body>
     <header>
-        <a href="#" class="logo">VAM!</a>
-        <button class="contact-btn">Contact Us</button>
+        <a href="#" class="logo">Vancouver AI Meetup (VAM!)</a> 
+        <nav>
+            <button class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="nav-menu" id="navMenu">
+                <a href="#hero">Home</a>
+                <a href="#events">Events</a>
+                <a href="#programs">Programs</a>
+                <a href="#community">Join the Community</a>
+                <a href="#testimonials">Testimonials</a>
+                <a href="#founders">Founders</a>
+                <a href="https://www.linkedin.com/company/vancouveraimeetup" target="_blank"><button class="contact-btn">LinkedIn</button></a>
+            </div>
+        </nav>
     </header>
     
-    <section class="hero">
-        <h1>Vancouver AI Meetup <span>(VAM!)</span></h1>
-        <p>We bring together professionals, researchers, enthusiasts, and AI-curious to share knowledge, discuss current trends, engage in learning experiences and collaborate on cutting-edge projects.</p>
-    </section>
-    
-    <section class="features">
-        <div class="feature-card">
-            <div class="feature-icon">
-                <i class="far fa-calendar-alt"></i>
-            </div>
-            <h3>Weekly Meetings</h3>
-            <p>Online and in-person at NorthEastern universities</p>
-        </div>
-        
-        <div class="feature-card">
-            <div class="feature-icon">
-                <i class="fas fa-users"></i>
-            </div>
-            <h3>Reading Groups</h3>
-            <p>In-depth discussions on AI research</p>
-        </div>
-        
-        <div class="feature-card">
-            <div class="feature-icon">
-                <i class="fas fa-book"></i>
-            </div>
-            <h3>Python Courses</h3>
-            <p>Learn Python for AI development</p>
-        </div>
-        
-        <div class="feature-card">
-            <div class="feature-icon">
-                <i class="fas fa-rocket"></i>
-            </div>
-            <h3>6-Week AI Program</h3>
-            <p>Intensive AI building course</p>
-        </div>
-    </section>
-    
-    <section class="events-section">
-        <h2>Join Our Weekly Friday Events</h2>
-        <div class="events-container">
-            <div class="event-card">
-                <div class="event-image">
-                    <img src="https://example.com/ai-virtual-event.jpg" alt="Virtual AI event">
-                </div>
-                <div class="event-details">
-                    <h3><i class="fas fa-video"></i> Online AI Meetup – Feb 14</h3>
-                    <p>Explore the impact of AI on businesses in this 1-hour beginner-friendly virtual session.</p>
-                    <button class="rsvp-btn">RSVP</button>
-                </div>
-            </div>
-            
-            <div class="event-card">
-                <div class="event-image">
-                    <img src="https://example.com/ai-in-person-event.jpg" alt="In-person AI event">
-                </div>
-                <div class="event-details">
-                    <h3><i class="fas fa-users"></i> In-Person AI Meetup – Feb 21</h3>
-                    <p>Join us for a presentation on Agentic Systems, a talk on Cybersecurity & AI, and a hands-on Prompt Engineering workshop!</p>
-                    <button class="rsvp-btn">RSVP</button>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <section class="reading-group-section">
-        <div class="reading-group-content">
-            <h2>Reading Group</h2>
-            <p>Join our weekly reading group to discuss cutting-edge AI research papers and stay up-to-date with the latest developments in the field.</p>
-            <button class="join-btn">Join Group</button>
-        </div>
-        <div class="reading-group-image">
-            <img src="https://example.com/reading-group.jpg" alt="AI Reading Group Discussion">
-        </div>
-    </section>
-    
-    <section class="testimonials-section">
-        <h2>What Our Members Say</h2>
-        <div class="testimonials-container">
-            <div class="testimonial-card">
-                <div class="testimonial-header">
-                    <div class="testimonial-avatar">
-                        <img src="https://example.com/avatar1.jpg" alt="Dr. Naghmeh Babaee">
-                    </div>
-                    <div class="testimonial-author">
-                        <h3>Dr. Naghmeh Babaee</h3>
-                        <p>Assistant Professor Faculty and Director of Education</p>
+    <section class="hero" id="hero">
+        <div class="container">
+            <h1>Upcoming Events</h1>
+            <div class="hero-calendar-container">
+                <div class="event-description-area">
+                    <div class="event-card-modern">
+                        <div class="event-header">
+                            <div class="event-icon">🎬</div>
+                            <h2>AI Meetup - Generative AI</h2>
+                        </div>
+                        <div class="event-datetime">
+                            <div class="calendar-icon">📅</div>
+                            <div class="datetime-text">Saturday, April 5th • 6:00 PM PDT</div>
+                        </div>
+                        <div class="event-description-modern">
+                            <div class="why-section">
+                                <div class="emoji">🤔</div>
+                                <div class="label">Why:</div>
+                                <div class="content">Join us for an exciting discussion on the latest developments in Generative AI. We'll explore practical applications, ethical considerations, and future trends.</div>
+                            </div>
+                            <div class="where-section">
+                                <div class="emoji">📍</div>
+                                <div class="label">Where:</div>
+                                <div class="content">Northeastern University Vancouver</div>
+                            </div>
+                            <hr>
+                            <div class="rsvp-section">
+                                <div class="content">
+                                    <a href="#" class="rsvp-button">RSVP Here</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="testimonial-content">
-                    <p>Thrilled to present my research on the ethical application of Artificial Intelligence in Education at the Vancouver AI Meetup. Huge thanks to Issam Laradji for the invite and to the amazing audience whose meaningful questions and comments made it a great session. Looking forward to connecting with this passionate team!</p>
-                </div>
-            </div>
-            
-            <div class="testimonial-card">
-                <div class="testimonial-header">
-                    <div class="testimonial-avatar">
-                        <img src="https://example.com/avatar2.jpg" alt="Ildar Akhmetov">
+                <div class="calendar-wrapper">
+                    <div class="calendar-container">
+                        <div class="calendar-header">
+                            <h2>April 2025</h2>
+                        </div>
+                        <div class="calendar-weekdays">
+                            <div>Sun</div>
+                            <div>Mon</div>
+                            <div>Tue</div>
+                            <div>Wed</div>
+                            <div>Thu</div>
+                            <div>Fri</div>
+                            <div>Sat</div>
+                        </div>
+                        <div class="calendar-days">
+                            <!-- First row (empty days + start of April) -->
+                            <div class="empty"></div>
+                            <div class="day">1</div>
+                            <div class="day">2</div>
+                            <div class="day">3</div>
+                            <div class="day">4</div>
+                            <div class="day event-day" data-event="ai-meetup">5</div>
+                            <div class="day">6</div>
+                            
+                            <!-- Second row -->
+                            <div class="day">7</div>
+                            <div class="day">8</div>
+                            <div class="day">9</div>
+                            <div class="day">10</div>
+                            <div class="day">11</div>
+                            <div class="day event-day" data-event="workshop">12</div>
+                            <div class="day">13</div>
+                            
+                            <!-- Third row -->
+                            <div class="day">14</div>
+                            <div class="day">15</div>
+                            <div class="day">16</div>
+                            <div class="day">17</div>
+                            <div class="day">18</div>
+                            <div class="day event-day" data-event="community">19</div>
+                            <div class="day">20</div>
+                            
+                            <!-- Fourth row -->
+                            <div class="day">21</div>
+                            <div class="day">22</div>
+                            <div class="day">23</div>
+                            <div class="day">24</div>
+                            <div class="day">25</div>
+                            <div class="day event-day" data-event="hackathon">26</div>
+                            <div class="day">27</div>
+                            
+                            <!-- Fifth row -->
+                            <div class="day">28</div>
+                            <div class="day">29</div>
+                            <div class="day">30</div>
+                            <div class="empty"></div>
+                            <div class="empty"></div>
+                            <div class="empty"></div>
+                            <div class="empty"></div>
+                        </div>
                     </div>
-                    <div class="testimonial-author">
-                        <h3>Ildar Akhmetov</h3>
-                        <p>Educator & Researcher, Emerging Leaders in Computer Science</p>
-                    </div>
-                </div>
-                <div class="testimonial-content">
-                    <p>What a fun event on our campus -- Vancouver AI Meetup (VAM!) Night, organized by Issam Laradji and Dylan Nihte at Northeastern University Vancouver. Enjoying some great learning with the Vancouver AI community and some of our fantastic students!</p>
-                </div>
-            </div>
-            
-            <div class="testimonial-card">
-                <div class="testimonial-header">
-                    <div class="testimonial-avatar">
-                        <img src="https://example.com/avatar3.jpg" alt="Gerardo N. Carrion">
-                    </div>
-                    <div class="testimonial-author">
-                        <h3>Gerardo N. Carrion</h3>
-                        <p>Digital Commerce Expert | AI & Strategic Partnerships</p>
-                    </div>
-                </div>
-                <div class="testimonial-content">
-                    <p>Vancouver AI Meetup (VAM!): A Night of Innovation & Ethics in AI! Last Friday night at Northeastern University Vancouver, the Vancouver AI Meetup brought together an incredible group of AI enthusiasts, researchers, and industry leaders. Huge thanks to Issam Laradji and Dylan Nihte for organizing such a fantastic event!</p>
                 </div>
             </div>
         </div>
     </section>
     
-    <section class="founders-section">
-        <h2>Our Co-founders</h2>
-        <div class="founders-container">
-            <div class="founder-card">
-                <div class="founder-image">
-                    <img src="https://example.com/founder1.jpg" alt="Issam Laradji">
+    
+    <section class="programs-section" id="programs">
+        <div class="container">
+            <h2>Programs</h2>
+            <div class="programs-grid">
+                <a href="#weekly-meetings" class="program-card">
+                    <div class="program-icon">
+                        <i class="far fa-calendar-alt"></i>
+                    </div>
+                    <h3>Weekly Meetings</h3>
+                    <p>Online and in-person at NorthEastern universities</p>
+                </a>
+                
+                <a href="#reading-group" class="program-card">
+                    <div class="program-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Reading Groups</h3>
+                    <p>In-depth discussions on AI research</p>
+                </a>
+                
+                <a href="#python-course" class="program-card">
+                    <div class="program-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h3>Python Courses</h3>
+                    <p>Learn Python for AI development</p>
+                </a>
+                
+                <a href="#ai-program" class="program-card">
+                    <div class="program-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3>6-Week AI Program</h3>
+                    <p>Intensive AI building course</p>
+                </a>
+                
+                <a href="#hackathon" class="program-card">
+                    <div class="program-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3>AI Hackathon</h3>
+                    <p>Build AI solutions in a weekend</p>
+                </a>
+                
+                <a href="#workshops" class="program-card">
+                    <div class="program-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3>AI Workshops</h3>
+                    <p>Hands-on learning experiences</p>
+                </a>
+            </div>
+        </div>
+    </section>
+    
+    
+    <section class="programs-section" id="community">
+        <div class="container">
+            <h2>Join the Community</h2>
+            <div class="community-grid">
+                <div class="community-card">
+                    <div class="community-icon">
+                        <i class="fas fa-bell"></i>
+                    </div>
+                    <h3>Stay Updated</h3>
+                    <p>Get weekly updates on our events and activities.</p>
+                    <a href="https://lu.ma/vam" target="_blank" class="community-btn">Subscribe Here</a>
                 </div>
-                <div class="founder-details">
-                    <h3>Issam Laradji</h3>
-                    <p class="founder-title">Adjunct Professor, UBC, Research Scientist, ServiceNow</p>
-                    <p class="founder-bio">Research Scientist at ServiceNow and an Adjunct Professor at University of British Columbia. He holds a PhD in Computer Science and a PhD from the University of British Columbia, and his research interests include natural language processing, computer vision, and large-scale optimization.</p>
+                
+                <div class="community-card">
+                    <div class="community-icon">
+                        <i class="fas fa-microphone"></i>
+                    </div>
+                    <h3>Give a Talk</h3>
+                    <p>Share your knowledge, research, or experience with our community. We welcome speakers of all levels.</p>
+                    <a href="https://forms.gle/PeST6kXsB5nezCeR9" target="_blank" class="community-btn">Apply to Speak</a>
+                </div>
+                
+                <!-- <div class="community-card">
+                    <div class="community-icon">
+                        <i class="fas fa-hands-helping"></i>
+                    </div>
+                    <h3>Volunteer</h3>
+                    <p>Help organize events, mentor newcomers, or contribute to our community projects.</p>
+                    <a href="https://forms.gle/yourVolunteerFormLink" target="_blank" class="community-btn">Volunteer</a>
+                </div>
+                 -->
+                <div class="community-card">
+                    <div class="community-icon">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                    <h3>WhatsApp Group</h3>
+                    <p>Join our WhatsApp group to connect with other members, share resources, and stay updated.</p>
+                    <a href="https://forms.gle/Qf1bCBngerz9W8N38" target="_blank" class="community-btn">Join Group</a>
                 </div>
             </div>
-            
-            <div class="founder-card">
-                <div class="founder-image">
-                    <img src="https://example.com/founder2.jpg" alt="Dylan Nihte">
+        </div>
+    </section>
+    <section class="testimonials-section" id="testimonials">
+        <div class="container">
+            <h2>What Our Members Say</h2>
+            <div class="testimonials-container">
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="testimonial-author">
+                            <h3>Dr. Naghmeh Babaee</h3>
+                            <p>Assistant Professor Faculty and Director of Education</p>
+                        </div>
+                    </div>
+                    <div class="testimonial-content">
+                        <p>Thrilled to present my research on the ethical application of Artificial Intelligence in Education at the Vancouver AI Meetup. Huge thanks to Issam Laradji for the invite and to the amazing audience whose meaningful questions and comments made it a great session. Looking forward to connecting with this passionate team!</p>
+                        <span class="read-more">Read More</span>
+                    </div>
                 </div>
-                <div class="founder-details">
-                    <h3>Dylan Nihte</h3>
-                    <p class="founder-title">AI Staffing Expert</p>
-                    <p class="founder-bio">Experienced entrepreneur focused on AI startups. I build tailored AI staffing models for business growth and talent retention, while balancing your human resourcing requirements. Passionate about helping entrepreneurs to better focus on leading their business.</p>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="testimonial-author">
+                            <h3>Ildar Akhmetov</h3>
+                            <p>Educator & Researcher, Emerging Leaders in Computer Science</p>
+                        </div>
+                    </div>
+                    <div class="testimonial-content">
+                        <p>What a fun event on our campus -- Vancouver AI Meetup (VAM!) Night, organized by Issam Laradji and Dylan Nihte at Northeastern University Vancouver. Enjoying some great learning with the Vancouver AI community and some of our fantastic students!</p>
+                        <span class="read-more">Read More</span>
+                    </div>
                 </div>
-            </div>
-            
-            <div class="founder-card">
-                <div class="founder-image">
-                    <img src="https://example.com/founder3.jpg" alt="Eric Laycock">
-                </div>
-                <div class="founder-details">
-                    <h3>Eric Laycock</h3>
-                    <p class="founder-title">ML Engineer</p>
-                    <p class="founder-bio">I'm passionate frontrunner of hundreds of large language models and overseeing the scaling of AI provider API traffic, as well as building user-clamoring agentic AI.</p>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="testimonial-author">
+                            <h3>Gerardo N. Carrion</h3>
+                            <p>Digital Commerce Expert | AI & Strategic Partnerships</p>
+                        </div>
+                    </div>
+                    <div class="testimonial-content">
+                        <p>Vancouver AI Meetup (VAM!): A Night of Innovation & Ethics in AI! Last Friday night at Northeastern University Vancouver, the Vancouver AI Meetup brought together an incredible group of AI enthusiasts, researchers, and industry leaders. Huge thanks to Issam Laradji and Dylan Nihte for organizing such a fantastic event!</p>
+                        <span class="read-more">Read More</span>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
     
-    <section class="cta-section">
-        <h2>Join Our Next Meetup</h2>
-        <button class="cta-btn">Register Now</button>
+    <section class="founders-section" id="founders">
+        <div class="container">
+            <h2>Our Co-founders</h2>
+            <div class="founders-container">
+                <div class="founder-card">
+                    <div class="founder-image">
+                        <img src="assets/issam.avif" alt="Issam Laradji">
+                    </div>
+                    <div class="founder-details">
+                        <h3>Issam Laradji</h3>
+                        <p class="founder-title">Adjunct Professor, UBC, Research Scientist, ServiceNow</p>
+                        <p class="founder-bio">Research Scientist at ServiceNow and an Adjunct Professor at University of British Columbia. He holds a PhD in Computer Science and a PhD from the University of British Columbia, and his research interests include natural language processing, computer vision, and large-scale optimization.</p>
+                        <span class="read-more">Read More</span>
+                    </div>
+                </div>
+                
+                <div class="founder-card">
+                    <div class="founder-image">
+                        <img src="assets/dylan.avif" alt="Dylan Nihte">
+                    </div>
+                    <div class="founder-details">
+                        <h3>Dylan Nihte</h3>
+                        <p class="founder-title">AI Staffing Expert</p>
+                        <p class="founder-bio">Experienced entrepreneur focused on AI startups. I build tailored AI staffing models for business growth and talent retention, while balancing your human resourcing requirements. Passionate about helping entrepreneurs to better focus on leading their business.</p>
+                        <span class="read-more">Read More</span>
+                    </div>
+                </div>
+                
+                <div class="founder-card">
+                    <div class="founder-image">
+                        <img src="assets/eric.avif" alt="Eric Laycock">
+                    </div>
+                    <div class="founder-details">
+                        <h3>Eric Laycock</h3>
+                        <p class="founder-title">ML Engineer</p>
+                        <p class="founder-bio">I'm passionate frontrunner of hundreds of large language models and overseeing the scaling of AI provider API traffic, as well as building user-clamoring agentic AI.</p>
+                        <span class="read-more">Read More</span>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
     
+
     <footer>
-        <div class="social-links">
-            <a href="#"><i class="fab fa-twitter"></i></a>
-            <a href="#"><i class="fab fa-linkedin"></i></a>
-            <a href="#"><i class="fab fa-github"></i></a>
-            <a href="#"><i class="fab fa-discord"></i></a>
+        <div class="container">
+            <p>&copy; 2024 Vancouver AI Meetup. All rights reserved.</p>
         </div>
-        <p>&copy; 2023 Vancouver AI Meetup. All rights reserved.</p>
     </footer>
+
+    <!-- Add JavaScript for mobile menu toggle -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.getElementById('menuToggle');
+            const navMenu = document.getElementById('navMenu');
+            const header = document.querySelector('header');
+            let lastScrollTop = 0;
+            
+            // Hide header on scroll down, show on scroll up
+            window.addEventListener('scroll', function() {
+                let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                
+                if (scrollTop > lastScrollTop && scrollTop > 100) {
+                    // Scrolling down and not at the top
+                    header.classList.add('header-hidden');
+                } else {
+                    // Scrolling up or at the top
+                    header.classList.remove('header-hidden');
+                }
+                
+                lastScrollTop = scrollTop;
+            });
+            
+            menuToggle.addEventListener('click', function() {
+                navMenu.classList.toggle('active');
+                menuToggle.classList.toggle('active');
+            });
+            
+            // Close menu when clicking on a nav link
+            const navLinks = document.querySelectorAll('.nav-menu a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    navMenu.classList.remove('active');
+                    menuToggle.classList.remove('active');
+                    
+                    // Smooth scroll to section
+                    if(this.getAttribute('href').startsWith('#')) {
+                        e.preventDefault();
+                        const targetId = this.getAttribute('href');
+                        const targetElement = document.querySelector(targetId);
+                        if(targetElement) {
+                            const headerHeight = document.querySelector('header').offsetHeight;
+                            const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+                            window.scrollTo({
+                                top: targetPosition,
+                                behavior: 'smooth'
+                            });
+                        }
+                    }
+                });
+            });
+            
+            // Read More functionality with improved animation
+            const readMoreLinks = document.querySelectorAll('.read-more');
+            readMoreLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    const contentP = this.previousElementSibling;
+                    if (contentP.style.webkitLineClamp === 'none' || !contentP.style.webkitLineClamp) {
+                        contentP.style.webkitLineClamp = 'none';
+                        contentP.style.overflow = 'visible';
+                        contentP.style.transition = 'max-height 0.3s ease';
+                        contentP.style.maxHeight = '500px';
+                        this.textContent = 'Read Less';
+                    } else {
+                        contentP.style.webkitLineClamp = '3';
+                        contentP.style.overflow = 'hidden';
+                        contentP.style.maxHeight = '4.8em';
+                        this.textContent = 'Read More';
+                    }
+                });
+            });
+            
+            // Add intersection observer for subtle animations
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate');
+                    }
+                });
+            }, {threshold: 0.1});
+            
+            document.querySelectorAll('.feature-card, .event-card, .program-card, .founder-card').forEach(card => {
+                observer.observe(card);
+            });
+            
+            // Calendar functionality with event descriptions
+            const eventDays = document.querySelectorAll('.event-day');
+            const eventDescriptionArea = document.getElementById('eventDescription');
+            const eventData = {
+                'ai-meetup': {
+                    title: 'AI Meetup - Generative AI',
+                    date: '5',
+                    month: 'APR',
+                    time: '6:00 PM - 8:00 PM',
+                    location: 'Northeastern University Vancouver',
+                    description: 'Join us for an exciting discussion on the latest developments in Generative AI. We\'ll explore practical applications, ethical considerations, and future trends.'
+                },
+                'workshop': {
+                    title: 'AI Workshop - Prompt Engineering',
+                    date: '12',
+                    month: 'APR',
+                    time: '5:30 PM - 7:30 PM',
+                    location: 'UBC Robson Square',
+                    description: 'Learn the art and science of prompt engineering for large language models. This hands-on workshop will teach you techniques to get better results from AI systems.'
+                },
+                'community': {
+                    title: 'Reading Group - AI Safety',
+                    date: '19',
+                    month: 'APR',
+                    time: '6:00 PM - 7:30 PM',
+                    location: 'Online via Zoom',
+                    description: 'This week we\'ll be discussing "Concrete Problems in AI Safety" and exploring alignment challenges in modern AI systems.'
+                },
+                'hackathon': {
+                    title: 'Mini AI Hackathon',
+                    date: '26',
+                    month: 'APR',
+                    time: '5:00 PM - 9:00 PM',
+                    location: 'Launch Academy, 300 - 128 W Hastings St',
+                    description: 'A fast-paced evening hackathon focused on building practical AI applications. Form teams, build prototypes, and demo your creations!'
+                }
+            };
+            
+         
+            
+            // Add click event to all days
+            const allDays = document.querySelectorAll('.calendar-days .day');
+            allDays.forEach(day => {
+                day.addEventListener('click', function() {
+                    // Remove selected class from all days
+                    allDays.forEach(d => d.classList.remove('selected'));
+                    
+                    // Add selected class to clicked day
+                    this.classList.add('selected');
+                    
+                    const dayNumber = this.textContent;
+                    const eventType = this.dataset.event;
+                    
+                    if (eventType) {
+                        updateEventDescription(eventType);
+                    } else {
+                        showNoEventsMessage(dayNumber);
+                    }
+                });
+            });
+            
+            // Show default event (first event day) on page load
+            const firstEventDay = document.querySelector('.event-day');
+            if (firstEventDay) {
+                firstEventDay.classList.add('selected');
+                updateEventDescription(firstEventDay.dataset.event);
+            }
+            
+            // RSVP button functionality
+            document.addEventListener('click', function(e) {
+                if (e.target && e.target.classList.contains('rsvp-btn')) {
+                    alert('Thank you for your interest! You would be redirected to the registration page in a real implementation.');
+                }
+            });
+        });
+    </script>
 </body>
 </html>

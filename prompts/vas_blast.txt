@@ -1,0 +1,44 @@
+:date: **Week 5 Events Are Live!**
+
+:red_circle: **[VAS] Lecture: App Showcase & Feedback**, we will support our friends with their app here:
+- **Monday, March 24th (5:30PM Online)**: https://lu.ma/r4p69u0u  
+- **Wednesday, March 26th (5:30PM Online)**: https://lu.ma/vxb23qic  
+- Lineup: [Google Sheets](https://docs.google.com/spreadsheets/d/11QVMmmgqgbh6Qv9i713XSVHSVlULRp6y5nPTmM402KA/edit?gid=0#gid=0)
+
+:performing_arts: **AI & Chill Co-working** 
+- **Thursday, March 27th (In-person 5:30PM)**: https://lu.ma/i31m8am2  
+-  Bring your code, prompts, or ideas
+
+:round_pushpin: **Online Office Hours** (Saturday, March 29th – 11:00AM) – Get AI project support & guidance.
+- :link: https://lu.ma/iyl4gksp  
+- Description: Open space for questions, feedback, and brainstorming. Drop in with blockers or just listen in!
+
+See you all soon!
+
+--------------------
+
+**:pushpin: WEEK 4 TASKS OFFICIAL RELEASE **
+*Deadline: March 24th*
+
+More Details Here: https://vam-nexus.github.io/vas/index.html#week4
+
+**Goal: **Demonstrate your progress and share your work with the community :rocket: 
+
+:one: **Deploy a Demo of Your App**
+:video_camera: [Relevant Lecture:](https://www.youtube.com/watch?v=jri3gTPE_TQ)
+   • Record a 10-30 second demo showcasing your app's key features
+   • Share the link in #week-4-outputs
+
+:two: **Optional Blogpost Challenge ($20 Award)**
+   • Write a blog post about your app idea and progress
+   • Share the link in #week-4-outputs and on LinkedIn
+   • Win $20!
+
+:three: **Sign Up for Next Week's 10-Minute App Showcase & Feedback**
+   • Each person gets 10 minute to showcase their app and we would give them support and feedback
+   • Open the sign-up sheet: [Google Sheets Link](https://docs.google.com/spreadsheets/d/11QVMmmgqgbh6Qv9i713XSVHSVlULRp6y5nPTmM402KA/edit?usp=sharing)
+   • Add your name to an available time slot
+   
+More Details Here: https://vam-nexus.github.io/vas/index.html#week4
+
+Happy Coding!
