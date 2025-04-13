@@ -1384,7 +1384,7 @@
         }
         
         .event-card-modern h2 {
-            font-size: 1.8rem;
+            font-size: 1.2rem;
             color: var(--accent-color);
             margin: 0;
             text-shadow: var(--neon-glow);
@@ -1907,27 +1907,26 @@
                 <div class="event-description-area">
                     <div class="event-card-modern">
                         <div class="event-header">
-                            <div class="event-icon">🎬</div>
-                            <h2>AI Meetup - Generative AI</h2>
+                            <div class="event-icon">🤖📖</div>
+                            <h2>VAM! Weekly AI Reading Group</h2>
                         </div>
                         <div class="event-datetime">
                             <div class="calendar-icon">📅</div>
-                            <div class="datetime-text">Saturday, April 5th • 6:00 PM PDT</div>
+                            <div class="datetime-text">Tuesday, April 15th • 6:00 PM PDT</div>
                         </div>
                         <div class="event-description-modern">
                             <div class="why-section">
-                                
-                                <div class="content">Join us for an exciting discussion on the latest developments in Generative AI. We'll explore practical applications, ethical considerations, and future trends.</div>
+                                <div class="content">Join our weekly AI reading group to discuss interesting AI papers. We'll have a 20-minute presentation followed by a 25-minute discussion. Great opportunity to learn and connect with others.</div>
                             </div>
                             <div class="where-section">
                                 <div class="emoji">📍</div>
                                 <div class="label">Where:</div>
-                                <div class="content">Northeastern University Vancouver</div>
+                                <div class="content">Online via Zoom</div>
                             </div>
                             <hr>
                             <div class="rsvp-section">
                                 <div class="content">
-                                    <a href="#" class="rsvp-button">RSVP Here</a>
+                                    <a href="https://lu.ma/mkajy4fg" target="_blank" class="rsvp-button">RSVP Here</a>
                                 </div>
                             </div>
                         </div>
@@ -1937,7 +1936,7 @@
                     <div class="calendar-container">
                         <div class="calendar-header">
                             <button class="month-nav prev-month"><i class="fas fa-chevron-left"></i></button>
-                            <h2 id="currentMonth">April 2025</h2>
+                            <h2 id="currentMonth">April 2024</h2>
                             <button class="month-nav next-month"><i class="fas fa-chevron-right"></i></button>
                         </div>
                         <div class="calendar-weekdays">
@@ -1951,49 +1950,49 @@
                         </div>
                         <div class="calendar-days">
                             <!-- First row (empty days + start of April) -->
-                            <div class="day">30</div>
                             <div class="day">31</div>
                             <div class="day">1</div>
                             <div class="day">2</div>
                             <div class="day">3</div>
                             <div class="day">4</div>
-                            <div class="day event-day" data-event="ai-meetup">5</div>
+                            <div class="day">5</div>
+                            <div class="day">6</div>
                             
                             <!-- Second row -->
-                            <div class="day">6</div>
                             <div class="day">7</div>
                             <div class="day">8</div>
                             <div class="day">9</div>
                             <div class="day">10</div>
                             <div class="day">11</div>
-                            <div class="day event-day" data-event="workshop">12</div>
+                            <div class="day">12</div>
+                            <div class="day">13</div>
                             
                             <!-- Third row -->
-                            <div class="day">13</div>
                             <div class="day">14</div>
-                            <div class="day">15</div>
+                            <div class="day event-day" data-event="reading-group">15</div>
                             <div class="day">16</div>
                             <div class="day">17</div>
-                            <div class="day">18</div>
-                            <div class="day event-day" data-event="community">19</div>
+                            <div class="day event-day" data-event="ai-chill">18</div>
+                            <div class="day">19</div>
+                            <div class="day">20</div>
                             
                             <!-- Fourth row -->
-                            <div class="day">20</div>
                             <div class="day">21</div>
                             <div class="day">22</div>
                             <div class="day">23</div>
                             <div class="day">24</div>
-                            <div class="day">25</div>
-                            <div class="day event-day" data-event="hackathon">26</div>
+                            <div class="day event-day" data-event="show-tell">25</div>
+                            <div class="day">26</div>
+                            <div class="day">27</div>
                             
                             <!-- Fifth row -->
-                            <div class="day">27</div>
                             <div class="day">28</div>
                             <div class="day">29</div>
                             <div class="day">30</div>
                             <div class="day">1</div>
-                            <div class="day">2</div>
+                            <div class="day event-day" data-event="lightning-talks">2</div>
                             <div class="day">3</div>
+                            <div class="day">4</div>
                         </div>
                     </div>
                 </div>
@@ -2286,46 +2285,68 @@
             
             // Calendar functionality with event descriptions
             const eventDays = document.querySelectorAll('.event-day');
-            const eventDescriptionArea = document.getElementById('eventDescription');
             const eventData = {
-                'ai-meetup': {
-                    title: 'AI Meetup - Generative AI',
-                    date: '5',
+                'reading-group': {
+                    title: 'VAM! Weekly AI Reading Group',
+                    date: '15',
                     month: 'APR',
-                    time: '6:00 PM - 8:00 PM',
-                    location: 'Northeastern University Vancouver',
-                    description: 'Join us for an exciting discussion on the latest developments in Generative AI. We\'ll explore practical applications, ethical considerations, and future trends.'
-                },
-                'workshop': {
-                    title: 'AI Workshop - Prompt Engineering',
-                    date: '12',
-                    month: 'APR',
-                    time: '5:30 PM - 7:30 PM',
-                    location: 'UBC Robson Square',
-                    description: 'Learn the art and science of prompt engineering for large language models. This hands-on workshop will teach you techniques to get better results from AI systems.'
-                },
-                'community': {
-                    title: 'Reading Group - AI Safety',
-                    date: '19',
-                    month: 'APR',
-                    time: '6:00 PM - 7:30 PM',
+                    day: 'Tuesday',
+                    time: '6:00 PM PDT',
                     location: 'Online via Zoom',
-                    description: 'This week we\'ll be discussing "Concrete Problems in AI Safety" and exploring alignment challenges in modern AI systems.'
+                    description: 'Join our weekly AI reading group to discuss interesting AI papers. We\'ll have a 20-minute presentation followed by a 25-minute discussion. Great opportunity to learn and connect with others.',
+                    rsvpLink: 'https://lu.ma/mkajy4fg'
                 },
-                'hackathon': {
-                    title: 'Mini AI Hackathon',
-                    date: '26',
+                'ai-chill': {
+                    title: 'VAM! AI & Chill: Friday Vibes Edition',
+                    date: '18',
                     month: 'APR',
-                    time: '5:00 PM - 9:00 PM',
-                    location: 'Launch Academy, 300 - 128 W Hastings St',
-                    description: 'A fast-paced evening hackathon focused on building practical AI applications. Form teams, build prototypes, and demo your creations!'
+                    day: 'Friday',
+                    time: '5:30 PM PDT',
+                    location: 'Cozy coffee spot (details in event link)',
+                    description: 'Join us for a relaxed evening to chat about the latest trends in AI. No slides or lectures, just good food and great conversation with curious minds.',
+                    rsvpLink: 'https://lu.ma/w9aavu19'
+                },
+                'show-tell': {
+                    title: 'VAM! Show & Tell AI Presentations',
+                    date: '25',
+                    month: 'APR',
+                    day: 'Friday',
+                    time: '5:30 PM PDT',
+                    location: 'Northeastern University Vancouver',
+                    description: 'See exciting AI projects from our community members, hear about their challenges and breakthroughs, and connect with fellow AI enthusiasts. Pizza and bubbly provided.',
+                    rsvpLink: 'https://lu.ma/xe31ibzc'
+                },
+                'lightning-talks': {
+                    title: 'VAM! AI Lightning Talks',
+                    date: '2',
+                    month: 'MAY',
+                    day: 'Friday',
+                    time: '5:30 PM PDT',
+                    location: 'Northeastern University Vancouver',
+                    description: 'Join us for AI project demos, get inspired by others\' challenges and breakthroughs, and network with fellow AI folks. Pizza and bubbly provided.',
+                    rsvpLink: 'https://lu.ma/ygysmxpl'
                 }
             };
             
-         
+            // Function to update event description based on selected event
+            function updateEventDescription(eventType) {
+                if (!eventType || !eventData[eventType]) return;
+                
+                const event = eventData[eventType];
+                const eventCard = document.querySelector('.event-card-modern');
+                
+                // Update event card content
+                eventCard.querySelector('.event-icon').textContent = eventType === 'reading-group' ? '🤖📖' : 
+                                                                    eventType === 'ai-chill' ? '🍻' : 
+                                                                    eventType === 'show-tell' ? '🎤' : '⚡';
+                eventCard.querySelector('h2').textContent = event.title;
+                eventCard.querySelector('.datetime-text').textContent = `${event.day}, ${event.month} ${event.date} • ${event.time}`;
+                eventCard.querySelector('.why-section .content').textContent = event.description;
+                eventCard.querySelector('.where-section .content').textContent = event.location;
+                eventCard.querySelector('.rsvp-button').href = event.rsvpLink;
+            }
             
-            // Add click event to only event days
-            const eventDays = document.querySelectorAll('.calendar-days .event-day');
+            // Add click event to event days
             eventDays.forEach(day => {
                 day.addEventListener('click', function() {
                     // Remove selected class from all days
@@ -2337,219 +2358,141 @@
                     
                     const eventType = this.dataset.event;
                     updateEventDescription(eventType);
+                    
+                    // Scroll to event description card
+                    const eventCard = document.querySelector('.event-card-modern');
+                    if (eventCard) {
+                        eventCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }
                 });
             });
             
-            // Remove click handlers from non-event days
-            const regularDays = document.querySelectorAll('.calendar-days .day:not(.event-day)');
-            regularDays.forEach(day => {
-                day.style.cursor = 'default';
-            });
-            
-            // Function to render calendar for a specific month
-            function renderCalendar(monthIndex) {
-                const month = months[monthIndex];
-                currentMonthDisplay.textContent = month.name;
-                
-                // Add fade effect
-                calendarDaysContainer.classList.add('fade');
-                
-                setTimeout(() => {
-                    // Clear existing calendar days
-                    calendarDaysContainer.innerHTML = '';
-                    
-                    // Add empty cells for days before the 1st of the month
-                    for (let i = 0; i < month.startDay; i++) {
-                        const emptyDay = document.createElement('div');
-                        emptyDay.className = 'empty';
-                        calendarDaysContainer.appendChild(emptyDay);
-                    }
-                    
-                    // Add days of the month
-                    for (let i = 1; i <= month.days; i++) {
-                        const dayCell = document.createElement('div');
-                        dayCell.className = 'day';
-                        dayCell.textContent = i;
-                        
-                        // Check if this day has an event
-                        if (month.events[i]) {
-                            dayCell.classList.add('event-day');
-                            dayCell.dataset.event = month.events[i];
-                            
-                            // Add click event only to event days
-                            dayCell.addEventListener('click', function() {
-                                // Remove selected class from all days
-                                document.querySelectorAll('.calendar-days .day').forEach(d => 
-                                    d.classList.remove('selected'));
-                                
-                                // Add selected class to clicked day
-                                this.classList.add('selected');
-                                
-                                const eventType = this.dataset.event;
-                                updateEventDescription(eventType);
-                            });
-                        }
-                        
-                        calendarDaysContainer.appendChild(dayCell);
-                    }
-                    
-                    // Add empty cells to complete the grid if needed
-                    const totalCells = document.querySelectorAll('.calendar-days > div').length;
-                    const cellsToAdd = 35 - totalCells; // 5 rows × 7 days = 35 cells
-                    
-                    if (cellsToAdd > 0) {
-                        for (let i = 0; i < cellsToAdd; i++) {
-                            const emptyDay = document.createElement('div');
-                            emptyDay.className = 'empty';
-                            calendarDaysContainer.appendChild(emptyDay);
-                        }
-                    }
-                    
-                    // Remove fade effect
-                    calendarDaysContainer.classList.remove('fade');
-                    
-                    // Select first event day if exists
-                    const firstEventDay = document.querySelector('.event-day');
-                    if (firstEventDay) {
-                        firstEventDay.classList.add('selected');
-                        updateEventDescription(firstEventDay.dataset.event);
-                    }
-                }, 300); // Wait for fade effect
-            }
-            
-            // Calendar month navigation
-            const prevMonthBtn = document.querySelector('.prev-month');
-            const nextMonthBtn = document.querySelector('.next-month');
-            const currentMonthDisplay = document.getElementById('currentMonth');
-            const calendarDaysContainer = document.querySelector('.calendar-days');
-            
-            // Define months data
+            // Define months data for 2025
             const months = [
                 {
                     name: 'March 2025',
                     days: 31,
-                    startDay: 5, // 0 = Sunday, so 5 = Friday (March 1, 2025 is a Saturday)
-                    events: {
-                        '15': 'workshop',
-                        '22': 'ai-meetup',
-                        '29': 'community'
-                    }
+                    startDay: 6, // Saturday (March 1, 2025)
+                    events: {}
                 },
                 {
                     name: 'April 2025',
                     days: 30,
-                    startDay: 1, // Tuesday (April 1, 2025 is a Tuesday)
+                    startDay: 2, // Tuesday (April 1, 2025 is actually a Tuesday)
                     events: {
-                        '5': 'ai-meetup',
-                        '12': 'workshop',
-                        '19': 'community',
-                        '26': 'hackathon'
+                        '15': 'reading-group',
+                        '18': 'ai-chill',
+                        '25': 'show-tell'
                     }
                 },
                 {
                     name: 'May 2025',
                     days: 31,
-                    startDay: 3, // Thursday (May 1, 2025 is a Thursday)
+                    startDay: 4, // Thursday (May 1, 2025)
                     events: {
-                        '3': 'workshop',
-                        '10': 'ai-meetup',
-                        '17': 'community',
-                        '24': 'hackathon',
-                        '31': 'special-event'
+                        '2': 'lightning-talks'
                     }
                 }
             ];
             
-            let currentMonthIndex = 1; // Start with April (index 1)
+            // Current month index (April is index 1 in our array)
+            let currentMonthIndex = 1;
             
             // Function to render calendar for a specific month
             function renderCalendar(monthIndex) {
                 const month = months[monthIndex];
-                currentMonthDisplay.textContent = month.name;
+                if (!month) return;
                 
-                // Add fade effect
-                calendarDaysContainer.classList.add('fade');
+                // Update month title
+                document.getElementById('currentMonth').textContent = month.name;
                 
-                setTimeout(() => {
-                    // Clear existing calendar days
-                    calendarDaysContainer.innerHTML = '';
+                const calendarDays = document.querySelector('.calendar-days');
+                calendarDays.innerHTML = '';
+                
+                // Get previous month for overflow days
+                const prevMonth = months[monthIndex - 1] || { days: 31 };
+                
+                // Add previous month overflow days
+                for (let i = 0; i < month.startDay; i++) {
+                    const day = document.createElement('div');
+                    day.className = 'day';
+                    day.textContent = prevMonth.days - month.startDay + i + 1;
+                    calendarDays.appendChild(day);
+                }
+                
+                // Add current month days
+                for (let i = 1; i <= month.days; i++) {
+                    const day = document.createElement('div');
+                    day.className = 'day';
                     
-                    // Add empty cells for days before the 1st of the month
-                    for (let i = 0; i < month.startDay; i++) {
-                        const emptyDay = document.createElement('div');
-                        emptyDay.className = 'empty';
-                        calendarDaysContainer.appendChild(emptyDay);
-                    }
-                    
-                    // Add days of the month
-                    for (let i = 1; i <= month.days; i++) {
-                        const dayCell = document.createElement('div');
-                        dayCell.className = 'day';
-                        dayCell.textContent = i;
+                    // Check if this day has an event
+                    if (month.events[i]) {
+                        day.classList.add('event-day');
+                        day.dataset.event = month.events[i];
                         
-                        // Check if this day has an event
-                        if (month.events[i]) {
-                            dayCell.classList.add('event-day');
-                            dayCell.dataset.event = month.events[i];
+                        // Add click event to event days
+                        day.addEventListener('click', function() {
+                            // Remove selected class from all days
+                            document.querySelectorAll('.calendar-days .day').forEach(d => 
+                                d.classList.remove('selected'));
                             
-                            // Add click event only to event days
-                            dayCell.addEventListener('click', function() {
-                                // Remove selected class from all days
-                                document.querySelectorAll('.calendar-days .day').forEach(d => 
-                                    d.classList.remove('selected'));
-                                
-                                // Add selected class to clicked day
-                                this.classList.add('selected');
-                                
-                                const eventType = this.dataset.event;
-                                updateEventDescription(eventType);
-                            });
-                        }
-                        
-                        calendarDaysContainer.appendChild(dayCell);
+                            // Add selected class to clicked day
+                            this.classList.add('selected');
+                            
+                            const eventType = this.dataset.event;
+                            updateEventDescription(eventType);
+                            
+                            // Scroll to event description card
+                            const eventCard = document.querySelector('.event-card-modern');
+                            if (eventCard) {
+                                eventCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                            }
+                        });
                     }
                     
-                    // Add empty cells to complete the grid if needed
-                    const totalCells = document.querySelectorAll('.calendar-days > div').length;
-                    const cellsToAdd = 35 - totalCells; // 5 rows × 7 days = 35 cells
-                    
-                    if (cellsToAdd > 0) {
-                        for (let i = 0; i < cellsToAdd; i++) {
-                            const emptyDay = document.createElement('div');
-                            emptyDay.className = 'empty';
-                            calendarDaysContainer.appendChild(emptyDay);
-                        }
-                    }
-                    
-                    // Remove fade effect
-                    calendarDaysContainer.classList.remove('fade');
-                    
-                    // Select first event day if exists
-                    const firstEventDay = document.querySelector('.event-day');
+                    day.textContent = i;
+                    calendarDays.appendChild(day);
+                }
+                
+                // Calculate how many next month days to show (to fill a 6x7 grid)
+                const totalCells = 42; // 6 rows x 7 columns
+                const remainingCells = totalCells - (month.startDay + month.days);
+                
+                // Add next month overflow days
+                for (let i = 1; i <= remainingCells; i++) {
+                    const day = document.createElement('div');
+                    day.className = 'day';
+                    day.textContent = i;
+                    calendarDays.appendChild(day);
+                }
+                
+                // Select first event day by default if this is the initial render
+                if (monthIndex === 1) { // April
+                    const firstEventDay = calendarDays.querySelector('.event-day');
                     if (firstEventDay) {
                         firstEventDay.classList.add('selected');
                         updateEventDescription(firstEventDay.dataset.event);
                     }
-                }, 300); // Wait for fade effect
+                }
             }
             
+            // Initialize calendar with April (index 1)
+            renderCalendar(currentMonthIndex);
+            
             // Add event listeners for month navigation
-            prevMonthBtn.addEventListener('click', function() {
+            document.querySelector('.prev-month').addEventListener('click', function() {
                 if (currentMonthIndex > 0) {
                     currentMonthIndex--;
                     renderCalendar(currentMonthIndex);
                 }
             });
             
-            nextMonthBtn.addEventListener('click', function() {
+            document.querySelector('.next-month').addEventListener('click', function() {
                 if (currentMonthIndex < months.length - 1) {
                     currentMonthIndex++;
                     renderCalendar(currentMonthIndex);
                 }
             });
-            
-            // Initial calendar render
-            renderCalendar(currentMonthIndex);
         });
     </script>
 </body>
