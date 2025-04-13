@@ -2000,7 +2000,7 @@
         </div>
         <div class="container">
             <br>
-            <a href="https://lu.ma/vam" target="_blank" class="community-btn">Subscribe to the Calendar Here</a>
+            <a href="https://lu.ma/vam" target="_blank" class="community-btn">Subscribe to Calendar</a>
         </div>
     </section>
     
@@ -2206,15 +2206,15 @@
             const header = document.querySelector('header');
             let lastScrollTop = 0;
             
-            // Hide header on scroll down, show on scroll up
+            // Hide header on scroll down, show on scroll up only if at the top
             window.addEventListener('scroll', function() {
                 let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
                 
                 if (scrollTop > lastScrollTop && scrollTop > 100) {
                     // Scrolling down and not at the top
                     header.classList.add('header-hidden');
-                } else {
-                    // Scrolling up or at the top
+                } else if (scrollTop <= 0) {
+                    // Only show header when at the very top
                     header.classList.remove('header-hidden');
                 }
                 
