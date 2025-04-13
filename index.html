@@ -1197,6 +1197,29 @@
             padding: 1rem;
             text-align: center;
             border-bottom: 1px solid var(--accent-color-purple);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .month-nav {
+            background: transparent;
+            border: none;
+            color: var(--accent-color-purple);
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .month-nav:hover {
+            color: var(--accent-color-green);
+            transform: scale(1.2);
+            text-shadow: var(--neon-glow-green);
+        }
+        
+        .month-nav:focus {
+            outline: none;
         }
         
         .calendar-header h2 {
@@ -1229,31 +1252,36 @@
             grid-template-columns: repeat(7, 1fr);
             grid-template-rows: repeat(5, 1fr);
             background-color: rgba(28, 37, 65, 0.7);
+            transition: opacity 0.3s ease;
         }
         
-        .calendar-days .day, .calendar-days .empty {
+        .calendar-days .day {
             padding: 1rem;
             text-align: center;
             border: 1px solid rgba(157, 114, 255, 0.1);
             transition: all 0.3s ease;
             position: relative;
-        }
-        
-        .calendar-days .day {
-            cursor: pointer;
-        }
-        
-        .calendar-days .day:hover {
-            background-color: rgba(157, 114, 255, 0.2);
-            transform: scale(1.05);
-            z-index: 10;
-            box-shadow: var(--neon-glow-purple);
+            color: rgba(255, 255, 255, 0.5); /* Dimmed color for non-event days */
+            cursor: default; /* Default cursor for non-event days */
         }
         
         .calendar-days .event-day {
             color: var(--accent-color-green);
             font-weight: bold;
             position: relative;
+            cursor: pointer; /* Pointer cursor only for event days */
+        }
+        
+        .calendar-days .event-day:hover {
+            background-color: rgba(157, 114, 255, 0.2);
+            transform: scale(1.05);
+            z-index: 10;
+            box-shadow: var(--neon-glow-purple);
+        }
+        
+        .calendar-days .day.selected {
+            background-color: rgba(157, 114, 255, 0.3);
+            box-shadow: var(--neon-glow-purple);
         }
         
         .calendar-days .event-day::after {
@@ -1272,6 +1300,10 @@
         .calendar-days .event-day:hover::after {
             background-color: var(--accent-color-pink);
             box-shadow: var(--neon-glow-pink);
+        }
+        
+        .calendar-days.fade {
+            opacity: 0.3;
         }
         
         @media (max-width: 768px) {
@@ -1466,19 +1498,24 @@
             flex: 1;
         }
         
-        .calendar-days .day, .calendar-days .empty {
+        .calendar-days .day {
             padding: 1rem;
             text-align: center;
             border: 1px solid rgba(157, 114, 255, 0.1);
             transition: all 0.3s ease;
             position: relative;
+            color: rgba(255, 255, 255, 0.5); /* Dimmed color for non-event days */
+            cursor: default; /* Default cursor for non-event days */
         }
         
-        .calendar-days .day {
-            cursor: pointer;
+        .calendar-days .event-day {
+            color: var(--accent-color-green);
+            font-weight: bold;
+            position: relative;
+            cursor: pointer; /* Pointer cursor only for event days */
         }
         
-        .calendar-days .day:hover {
+        .calendar-days .event-day:hover {
             background-color: rgba(157, 114, 255, 0.2);
             transform: scale(1.05);
             z-index: 10;
@@ -1488,12 +1525,6 @@
         .calendar-days .day.selected {
             background-color: rgba(157, 114, 255, 0.3);
             box-shadow: var(--neon-glow-purple);
-        }
-        
-        .calendar-days .event-day {
-            color: var(--accent-color-green);
-            font-weight: bold;
-            position: relative;
         }
         
         .calendar-days .event-day::after {
@@ -1885,8 +1916,7 @@
                         </div>
                         <div class="event-description-modern">
                             <div class="why-section">
-                                <div class="emoji">🤔</div>
-                                <div class="label">Why:</div>
+                                
                                 <div class="content">Join us for an exciting discussion on the latest developments in Generative AI. We'll explore practical applications, ethical considerations, and future trends.</div>
                             </div>
                             <div class="where-section">
@@ -1906,7 +1936,9 @@
                 <div class="calendar-wrapper">
                     <div class="calendar-container">
                         <div class="calendar-header">
-                            <h2>April 2025</h2>
+                            <button class="month-nav prev-month"><i class="fas fa-chevron-left"></i></button>
+                            <h2 id="currentMonth">April 2025</h2>
+                            <button class="month-nav next-month"><i class="fas fa-chevron-right"></i></button>
                         </div>
                         <div class="calendar-weekdays">
                             <div>Sun</div>
@@ -1919,58 +1951,61 @@
                         </div>
                         <div class="calendar-days">
                             <!-- First row (empty days + start of April) -->
-                            <div class="empty"></div>
+                            <div class="day">30</div>
+                            <div class="day">31</div>
                             <div class="day">1</div>
                             <div class="day">2</div>
                             <div class="day">3</div>
                             <div class="day">4</div>
                             <div class="day event-day" data-event="ai-meetup">5</div>
-                            <div class="day">6</div>
                             
                             <!-- Second row -->
+                            <div class="day">6</div>
                             <div class="day">7</div>
                             <div class="day">8</div>
                             <div class="day">9</div>
                             <div class="day">10</div>
                             <div class="day">11</div>
                             <div class="day event-day" data-event="workshop">12</div>
-                            <div class="day">13</div>
                             
                             <!-- Third row -->
+                            <div class="day">13</div>
                             <div class="day">14</div>
                             <div class="day">15</div>
                             <div class="day">16</div>
                             <div class="day">17</div>
                             <div class="day">18</div>
                             <div class="day event-day" data-event="community">19</div>
-                            <div class="day">20</div>
                             
                             <!-- Fourth row -->
+                            <div class="day">20</div>
                             <div class="day">21</div>
                             <div class="day">22</div>
                             <div class="day">23</div>
                             <div class="day">24</div>
                             <div class="day">25</div>
                             <div class="day event-day" data-event="hackathon">26</div>
-                            <div class="day">27</div>
                             
                             <!-- Fifth row -->
+                            <div class="day">27</div>
                             <div class="day">28</div>
                             <div class="day">29</div>
                             <div class="day">30</div>
-                            <div class="empty"></div>
-                            <div class="empty"></div>
-                            <div class="empty"></div>
-                            <div class="empty"></div>
+                            <div class="day">1</div>
+                            <div class="day">2</div>
+                            <div class="day">3</div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <div class="container">
+            <br>
+            <a href="https://lu.ma/vam" target="_blank" class="community-btn">Subscribe to the Calendar Here</a>
+        </div>
     </section>
     
     
-    <section class="programs-section" id="programs">
         <div class="container">
             <h2>Programs</h2>
             <div class="programs-grid">
@@ -2289,40 +2324,232 @@
             
          
             
-            // Add click event to all days
-            const allDays = document.querySelectorAll('.calendar-days .day');
-            allDays.forEach(day => {
+            // Add click event to only event days
+            const eventDays = document.querySelectorAll('.calendar-days .event-day');
+            eventDays.forEach(day => {
                 day.addEventListener('click', function() {
                     // Remove selected class from all days
-                    allDays.forEach(d => d.classList.remove('selected'));
+                    document.querySelectorAll('.calendar-days .day').forEach(d => 
+                        d.classList.remove('selected'));
                     
                     // Add selected class to clicked day
                     this.classList.add('selected');
                     
-                    const dayNumber = this.textContent;
                     const eventType = this.dataset.event;
-                    
-                    if (eventType) {
-                        updateEventDescription(eventType);
-                    } else {
-                        showNoEventsMessage(dayNumber);
-                    }
+                    updateEventDescription(eventType);
                 });
             });
             
-            // Show default event (first event day) on page load
-            const firstEventDay = document.querySelector('.event-day');
-            if (firstEventDay) {
-                firstEventDay.classList.add('selected');
-                updateEventDescription(firstEventDay.dataset.event);
+            // Remove click handlers from non-event days
+            const regularDays = document.querySelectorAll('.calendar-days .day:not(.event-day)');
+            regularDays.forEach(day => {
+                day.style.cursor = 'default';
+            });
+            
+            // Function to render calendar for a specific month
+            function renderCalendar(monthIndex) {
+                const month = months[monthIndex];
+                currentMonthDisplay.textContent = month.name;
+                
+                // Add fade effect
+                calendarDaysContainer.classList.add('fade');
+                
+                setTimeout(() => {
+                    // Clear existing calendar days
+                    calendarDaysContainer.innerHTML = '';
+                    
+                    // Add empty cells for days before the 1st of the month
+                    for (let i = 0; i < month.startDay; i++) {
+                        const emptyDay = document.createElement('div');
+                        emptyDay.className = 'empty';
+                        calendarDaysContainer.appendChild(emptyDay);
+                    }
+                    
+                    // Add days of the month
+                    for (let i = 1; i <= month.days; i++) {
+                        const dayCell = document.createElement('div');
+                        dayCell.className = 'day';
+                        dayCell.textContent = i;
+                        
+                        // Check if this day has an event
+                        if (month.events[i]) {
+                            dayCell.classList.add('event-day');
+                            dayCell.dataset.event = month.events[i];
+                            
+                            // Add click event only to event days
+                            dayCell.addEventListener('click', function() {
+                                // Remove selected class from all days
+                                document.querySelectorAll('.calendar-days .day').forEach(d => 
+                                    d.classList.remove('selected'));
+                                
+                                // Add selected class to clicked day
+                                this.classList.add('selected');
+                                
+                                const eventType = this.dataset.event;
+                                updateEventDescription(eventType);
+                            });
+                        }
+                        
+                        calendarDaysContainer.appendChild(dayCell);
+                    }
+                    
+                    // Add empty cells to complete the grid if needed
+                    const totalCells = document.querySelectorAll('.calendar-days > div').length;
+                    const cellsToAdd = 35 - totalCells; // 5 rows × 7 days = 35 cells
+                    
+                    if (cellsToAdd > 0) {
+                        for (let i = 0; i < cellsToAdd; i++) {
+                            const emptyDay = document.createElement('div');
+                            emptyDay.className = 'empty';
+                            calendarDaysContainer.appendChild(emptyDay);
+                        }
+                    }
+                    
+                    // Remove fade effect
+                    calendarDaysContainer.classList.remove('fade');
+                    
+                    // Select first event day if exists
+                    const firstEventDay = document.querySelector('.event-day');
+                    if (firstEventDay) {
+                        firstEventDay.classList.add('selected');
+                        updateEventDescription(firstEventDay.dataset.event);
+                    }
+                }, 300); // Wait for fade effect
             }
             
-            // RSVP button functionality
-            document.addEventListener('click', function(e) {
-                if (e.target && e.target.classList.contains('rsvp-btn')) {
-                    alert('Thank you for your interest! You would be redirected to the registration page in a real implementation.');
+            // Calendar month navigation
+            const prevMonthBtn = document.querySelector('.prev-month');
+            const nextMonthBtn = document.querySelector('.next-month');
+            const currentMonthDisplay = document.getElementById('currentMonth');
+            const calendarDaysContainer = document.querySelector('.calendar-days');
+            
+            // Define months data
+            const months = [
+                {
+                    name: 'March 2025',
+                    days: 31,
+                    startDay: 5, // 0 = Sunday, so 5 = Friday (March 1, 2025 is a Saturday)
+                    events: {
+                        '15': 'workshop',
+                        '22': 'ai-meetup',
+                        '29': 'community'
+                    }
+                },
+                {
+                    name: 'April 2025',
+                    days: 30,
+                    startDay: 1, // Tuesday (April 1, 2025 is a Tuesday)
+                    events: {
+                        '5': 'ai-meetup',
+                        '12': 'workshop',
+                        '19': 'community',
+                        '26': 'hackathon'
+                    }
+                },
+                {
+                    name: 'May 2025',
+                    days: 31,
+                    startDay: 3, // Thursday (May 1, 2025 is a Thursday)
+                    events: {
+                        '3': 'workshop',
+                        '10': 'ai-meetup',
+                        '17': 'community',
+                        '24': 'hackathon',
+                        '31': 'special-event'
+                    }
+                }
+            ];
+            
+            let currentMonthIndex = 1; // Start with April (index 1)
+            
+            // Function to render calendar for a specific month
+            function renderCalendar(monthIndex) {
+                const month = months[monthIndex];
+                currentMonthDisplay.textContent = month.name;
+                
+                // Add fade effect
+                calendarDaysContainer.classList.add('fade');
+                
+                setTimeout(() => {
+                    // Clear existing calendar days
+                    calendarDaysContainer.innerHTML = '';
+                    
+                    // Add empty cells for days before the 1st of the month
+                    for (let i = 0; i < month.startDay; i++) {
+                        const emptyDay = document.createElement('div');
+                        emptyDay.className = 'empty';
+                        calendarDaysContainer.appendChild(emptyDay);
+                    }
+                    
+                    // Add days of the month
+                    for (let i = 1; i <= month.days; i++) {
+                        const dayCell = document.createElement('div');
+                        dayCell.className = 'day';
+                        dayCell.textContent = i;
+                        
+                        // Check if this day has an event
+                        if (month.events[i]) {
+                            dayCell.classList.add('event-day');
+                            dayCell.dataset.event = month.events[i];
+                            
+                            // Add click event only to event days
+                            dayCell.addEventListener('click', function() {
+                                // Remove selected class from all days
+                                document.querySelectorAll('.calendar-days .day').forEach(d => 
+                                    d.classList.remove('selected'));
+                                
+                                // Add selected class to clicked day
+                                this.classList.add('selected');
+                                
+                                const eventType = this.dataset.event;
+                                updateEventDescription(eventType);
+                            });
+                        }
+                        
+                        calendarDaysContainer.appendChild(dayCell);
+                    }
+                    
+                    // Add empty cells to complete the grid if needed
+                    const totalCells = document.querySelectorAll('.calendar-days > div').length;
+                    const cellsToAdd = 35 - totalCells; // 5 rows × 7 days = 35 cells
+                    
+                    if (cellsToAdd > 0) {
+                        for (let i = 0; i < cellsToAdd; i++) {
+                            const emptyDay = document.createElement('div');
+                            emptyDay.className = 'empty';
+                            calendarDaysContainer.appendChild(emptyDay);
+                        }
+                    }
+                    
+                    // Remove fade effect
+                    calendarDaysContainer.classList.remove('fade');
+                    
+                    // Select first event day if exists
+                    const firstEventDay = document.querySelector('.event-day');
+                    if (firstEventDay) {
+                        firstEventDay.classList.add('selected');
+                        updateEventDescription(firstEventDay.dataset.event);
+                    }
+                }, 300); // Wait for fade effect
+            }
+            
+            // Add event listeners for month navigation
+            prevMonthBtn.addEventListener('click', function() {
+                if (currentMonthIndex > 0) {
+                    currentMonthIndex--;
+                    renderCalendar(currentMonthIndex);
                 }
             });
+            
+            nextMonthBtn.addEventListener('click', function() {
+                if (currentMonthIndex < months.length - 1) {
+                    currentMonthIndex++;
+                    renderCalendar(currentMonthIndex);
+                }
+            });
+            
+            // Initial calendar render
+            renderCalendar(currentMonthIndex);
         });
     </script>
 </body>
