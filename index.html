@@ -44,7 +44,6 @@
             background-attachment: fixed;
             color: var(--text-light);
             line-height: 1.8;
-            padding-top: 70px;
         }
         
         header {
@@ -56,16 +55,8 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            position: fixed;
             width: 100%;
-            top: 0;
-            z-index: 100;
             box-shadow: 0 2px 10px rgba(157, 114, 255, 0.2);
-            transition: transform 0.3s ease;
-        }
-        
-        .header-hidden {
-            transform: translateY(-100%);
         }
         
         .logo {
@@ -75,7 +66,6 @@
             text-decoration: none;
             text-shadow: var(--neon-glow-purple);
             letter-spacing: 2px;
-            animation: pulse 3s infinite;
         }
         
         .contact-btn {
@@ -1895,6 +1885,7 @@
             background-size: cover;
             background-position: center;
             overflow: hidden;
+            padding-top: 70px; /* Add padding to account for fixed header */
         }
         
         .hero-overlay {
@@ -2279,23 +2270,8 @@
         document.addEventListener('DOMContentLoaded', function() {
             const menuToggle = document.getElementById('menuToggle');
             const navMenu = document.getElementById('navMenu');
-            const header = document.querySelector('header');
-            let lastScrollTop = 0;
             
-            // Hide header on scroll down, show on scroll up only if at the top
-            window.addEventListener('scroll', function() {
-                let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-                
-                if (scrollTop > lastScrollTop && scrollTop > 100) {
-                    // Scrolling down and not at the top
-                    header.classList.add('header-hidden');
-                } else if (scrollTop <= 0) {
-                    // Only show header when at the very top
-                    header.classList.remove('header-hidden');
-                }
-                
-                lastScrollTop = scrollTop;
-            });
+            // Remove header scroll event listener
             
             menuToggle.addEventListener('click', function() {
                 navMenu.classList.toggle('active');
@@ -2315,10 +2291,8 @@
                         const targetId = this.getAttribute('href');
                         const targetElement = document.querySelector(targetId);
                         if(targetElement) {
-                            const headerHeight = document.querySelector('header').offsetHeight;
-                            const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight;
                             window.scrollTo({
-                                top: targetPosition,
+                                top: targetElement.offsetTop,
                                 behavior: 'smooth'
                             });
                         }
