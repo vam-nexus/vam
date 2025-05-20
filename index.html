@@ -2502,12 +2502,12 @@
                 if (!months || months.length === 0) return;
                 
                 const month = months[monthIndex];
-                if (!month) return;
+                const calendarDays = document.querySelector('.calendar-days');
+                const currentMonth = document.getElementById('currentMonth');
+                if (!month || !calendarDays || !currentMonth) return;
                 
                 // Update month title
-                document.getElementById('currentMonth').textContent = month.name;
-                
-                const calendarDays = document.querySelector('.calendar-days');
+                currentMonth.textContent = month.name;
                 calendarDays.innerHTML = '';
                 
                 // Get previous month for overflow days
@@ -2625,19 +2625,24 @@
                 renderCalendar(currentMonthIndex);
                 
                 // Add event listeners for month navigation
-                document.querySelector('.prev-month').addEventListener('click', function() {
-                    if (currentMonthIndex > 0) {
-                        currentMonthIndex--;
-                        renderCalendar(currentMonthIndex);
-                    }
-                });
-                
-                document.querySelector('.next-month').addEventListener('click', function() {
-                    if (currentMonthIndex < months.length - 1) {
-                        currentMonthIndex++;
-                        renderCalendar(currentMonthIndex);
-                    }
-                });
+                if (document.querySelector('.prev-month')) {
+                    document.querySelector('.prev-month').addEventListener('click', function() {
+                        if (currentMonthIndex > 0) {
+                            currentMonthIndex--;
+                            renderCalendar(currentMonthIndex);
+                        }
+                    });
+                }
+
+                if (document.querySelector('.next-month')) {
+                    document.querySelector('.next-month').addEventListener('click', function() {
+                        if (currentMonthIndex < months.length - 1) {
+                            currentMonthIndex++;
+                            renderCalendar(currentMonthIndex);
+                        }
+                    });
+                }
+            }
             }
         });
     </script>
