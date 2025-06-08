@@ -2105,6 +2105,7 @@
                 <a href="#hero">Home</a>
                 <a href="#events">Events</a>
                 <a href="#programs">Programs</a>
+                <a href="#gallery">Gallery</a>
                 <a href="#community">Join the Community</a>
                 <a href="#testimonials">Testimonials</a>
                 <a href="#founders">Founders</a>
@@ -2172,7 +2173,7 @@
                     <p>Learn Python for AI development</p>
                 </a>
                 
-                <a href="#ai-program" class="program-card">
+                <a href="#gallery" class="program-card">
                     <div class="program-icon">
                         <i class="fas fa-rocket"></i>
                     </div>
@@ -2199,7 +2200,7 @@
         </div>
     </section>
 
-    <section class="programs-section" id="ai-program">
+    <section class="programs-section" id="gallery">
         <div class="gallery-container">
             <h2>Gallery</h2>
             <div class="programs-grid gallery-grid"></div>
@@ -2373,7 +2374,8 @@
                         appName: row[4] || "- -",
                         appDescription: row[5] || "- -",
                         email: row[3] || '',
-                        imageUrl: row[6] || "https://images.unsplash.com/photo-1461749280684-dccba630e2f6",                        link: row[7] || "#"
+                        imageUrl: row[6],
+                        link: row[7] || "#"
                     };
                 });
             } catch (error) {
@@ -2762,7 +2764,8 @@
             // Fetch and display gallery data            
             const data = await fetchGalleryDataFromGoogleSheets();
             if (document.querySelector('.gallery-grid')) {
-                document.querySelector('.gallery-grid').innerHTML = data.map(item => `
+                // filter out items without imageUrl and render the gallery
+                document.querySelector('.gallery-grid').innerHTML = data.filter(item => Boolean(item.imageUrl)).map(item => `
                     <a href="${item.link}" target="_blank" class="gallery-card">
                         <img src="${item.imageUrl}" alt="${item.firstName} ${item.lastName}">
                         <div class="gallery-overlay">
