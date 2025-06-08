@@ -2762,7 +2762,8 @@
             // Fetch and display gallery data            
             const data = await fetchGalleryDataFromGoogleSheets();
             if (document.querySelector('.gallery-grid')) {
-                document.querySelector('.gallery-grid').innerHTML = data.map(item => `
+                // filter out items without imageUrl and render the gallery
+                document.querySelector('.gallery-grid').innerHTML = data.filter(item => Boolean(item.imageUrl)).map(item => `
                     <a href="${item.link}" target="_blank" class="gallery-card">
                         <img src="${item.imageUrl}" alt="${item.firstName} ${item.lastName}">
                         <div class="gallery-overlay">
