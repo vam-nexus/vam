@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery - Vancouver AI Meetup (VAM!)</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+    <style>
+        :root {
+            --primary-color: #0a111f;
+            --secondary-color: #1c2541;
+            --tertiary-color: #2e1760;
+            --accent-color-purple: #9d72ff;
+            --accent-color-green: #64ffda;
+            --accent-color-pink: #ff5caf;
+            --accent-color-alt: #e6c79c;
+            --text-color: #8892b0;
+            --text-light: #ccd6f6;
+            --text-gold: #ffd700;
+            --card-color: rgba(28, 37, 65, 0.8);
+            --card-bg-dark: rgba(10, 17, 40, 0.95);
+            --card-bg-purple: rgba(46, 23, 96, 0.95);
+            
+            /* Neon glow effects */
+            --neon-glow-purple: 0 0 10px rgba(157, 114, 255, 0.5);
+            --neon-glow-green: 0 0 10px rgba(100, 255, 218, 0.5);
+            --neon-glow-pink: 0 0 10px rgba(255, 92, 175, 0.5);
+            --neon-glow-alt: 0 0 10px rgba(230, 199, 156, 0.5);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', 'Segoe UI', sans-serif;
+        }
+        
+        body {
+            background-color: var(--primary-color);
+            background-image: 
+                linear-gradient(rgba(10, 14, 26, 0.95), rgba(10, 14, 26, 0.95)),
+                url('https://example.com/celestial-background.jpg');
+            background-size: cover;
+            background-attachment: fixed;
+            color: var(--text-light);
+            line-height: 1.8;
+        }
+        
+        header {
+            background-color: rgba(10, 17, 40, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--accent-color-purple);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            box-shadow: 0 2px 10px rgba(157, 114, 255, 0.2);
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--accent-color-purple);
+            text-decoration: none;
+            text-shadow: var(--neon-glow-purple);
+            letter-spacing: 2px;
+        }
+        
+        .nav-menu {
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+        }
+        
+        .nav-menu a {
+            color: var(--text-color);
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            font-weight: 500;
+            position: relative;
+            transition: color 0.3s ease, text-shadow 0.3s ease;
+        }
+        
+        .nav-menu a:hover {
+            color: var(--accent-color-purple);
+            text-shadow: var(--neon-glow-purple);
+        }
+        
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-color-purple);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+        
+        .contact-btn {
+            background-color: transparent;
+            color: var(--accent-color-green);
+            border: 1px solid var(--accent-color-green);
+            padding: 0.5rem 1rem;
+            border-radius: 0;
+            cursor: pointer;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .contact-btn:hover {
+            background-color: var(--accent-color-green);
+            color: var(--primary-color);
+            box-shadow: var(--neon-glow-green);
+            transform: translateY(-3px);
+        }
+        
+        .gallery-hero {
+            min-height: 40vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 4rem 5%;
+            position: relative;
+            overflow: hidden;
+            background-image: url('docs/hero2.png');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .gallery-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 14, 26, 0.8);
+            z-index: 1;
+        }
+        
+        .gallery-hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .gallery-hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            position: relative;
+        }
+        
+        .gallery-hero h1 span {
+            color: var(--accent-color-purple);
+            text-shadow: var(--neon-glow-purple);
+        }
+        
+        .gallery-hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+            color: var(--text-light);
+        }
+        
+        .gallery-section {
+            padding: 4rem 5%;
+            background-color: var(--primary-color);
+            position: relative;
+        }
+        
+        .gallery-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(0deg, rgba(157, 114, 255, 0.05) 0%, transparent 50%),
+                linear-gradient(90deg, rgba(100, 255, 218, 0.05) 0%, transparent 50%);
+            z-index: -1;
+        }
+        
+        .gallery-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .gallery-card {
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--accent-color-purple);
+            background-color: var(--card-bg-dark);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        .gallery-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-color-purple), var(--accent-color-green));
+        }
+        
+        .gallery-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--neon-glow-pink);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .gallery-card img {
+            width: 100%;
+            height: auto;
+            min-height: 320px;
+            object-fit: contain;
+            object-position: top;
+        }
+        
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            padding: 16px;
+            background: var(--tertiary-color);
+            width: 100%;
+            min-height: 120px;
+            overflow: hidden;
+        }
+        
+        .gallery-name {
+            color: var(--text-light);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .gallery-app-name {
+            color: var(--accent-color-alt);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .gallery-app-description {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            overflow: auto;
+            max-height: 56px;
+            line-height: 1.4;
+        }
+        
+        .loading-spinner {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 200px;
+            font-size: 1.2rem;
+            color: var(--accent-color-purple);
+        }
+        
+        .error-message {
+            text-align: center;
+            color: var(--accent-color-pink);
+            padding: 2rem;
+            font-size: 1.1rem;
+        }
+        
+        footer {
+            background-color: rgba(10, 25, 47, 0.95);
+            border-top: 1px solid var(--accent-color-purple);
+            padding: 2rem 5%;
+            text-align: center;
+            color: var(--text-light);
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .social-links a {
+            color: var(--text-light);
+            font-size: 1.5rem;
+            transition: color 0.3s ease, text-shadow 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            color: var(--accent-color-purple);
+            text-shadow: var(--neon-glow-purple);
+        }
+        
+        /* Mobile menu toggle */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-color);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+            
+            .nav-menu {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                height: 100vh;
+                background-color: rgba(0, 0, 0, 0.95);
+                flex-direction: column;
+                justify-content: center;
+                padding: 2rem;
+                transition: right 0.3s ease;
+                z-index: 200;
+                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.5);
+            }
+            
+            .nav-menu.active {
+                right: 0;
+            }
+            
+            .nav-menu a {
+                font-size: 1.2rem;
+                padding: 1rem 0;
+            }
+            
+            .gallery-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .gallery-hero p {
+                font-size: 1rem;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Add subtle animations */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .logo {
+            animation: pulse 3s infinite;
+        }
+        
+        /* Better focus states for accessibility */
+        a:focus, button:focus {
+            outline: 2px solid var(--accent-color-purple);
+            outline-offset: 3px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="index.html" class="logo">Vancouver AI Meetup (VAM!)</a> 
+        <nav>
+            <button class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="nav-menu" id="navMenu">
+                <a href="index.html">Home</a>
+                <a href="index.html#events">Events</a>
+                <a href="index.html#programs">Programs</a>
+                <a href="gallery.html">Projects Gallery</a>
+                <a href="index.html#community">Join the Community</a>
+                <a href="index.html#testimonials">Testimonials</a>
+                <a href="index.html#founders">Founders</a>
+                <a href="https://www.linkedin.com/company/vancouveraimeetup" target="_blank"><button class="contact-btn">LinkedIn</button></a>
+            </div>
+        </nav>
+    </header>
+    
+    <section class="gallery-hero">
+        <div class="gallery-hero-content">
+            <h1>AI Project <span>Gallery</span></h1>
+            <p>Discover amazing AI projects built by our community members. From machine learning models to innovative applications, see what our talented developers have created.</p>
+        </div>
+    </section>
+    
+    <section class="gallery-section">
+        <div class="gallery-container">
+            <div id="loading" class="loading-spinner">
+                <i class="fas fa-spinner fa-spin"></i> Loading gallery...
+            </div>
+            <div id="error" class="error-message" style="display: none;">
+                Failed to load gallery data. Please try again later.
+            </div>
+            <div class="gallery-grid" id="galleryGrid"></div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="social-links">
+            <a href="https://discord.gg/uhFEhrAFZt" target="_blank"><i class="fab fa-discord"></i></a>
+            <a href="https://www.linkedin.com/company/vancouveraimeetup" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://lu.ma/vam" target="_blank"><i class="fas fa-calendar-alt"></i></a>
+        </div>
+        <p>&copy; 2024 Vancouver AI Meetup. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const GOOGLE_SHEET_ID = "1vhh6YxNM40jJVT2yZEVvnbXGotCiU1gtZBlx-yrUpx0";
+
+        async function fetchGalleryDataFromGoogleSheets() {
+            try {
+                // Using the public CSV export URL which should work better with CORS
+                const response = await fetch(
+                    `https://docs.google.com/spreadsheets/d/${GOOGLE_SHEET_ID}/export?format=csv&gid=0`
+                );
+
+                if (!response.ok) {
+                    throw new Error(`Failed to fetch data: ${response.statusText}`);
+                }
+
+                // Parse the CSV data
+                const csvText = await response.text();
+
+                const result = Papa.parse(csvText, {
+                    header: false,
+                    skipEmptyLines: true
+                });
+
+                const rows = result.data;
+
+                if (rows?.length <= 1) {
+                    throw new Error("No data found in the spreadsheet");
+                }
+                
+                // Assuming the first row contains headers
+                const dataRows = rows.slice(1);
+
+                // Map the rows to our AppCardData format
+                return dataRows.map((row, index) => {
+                    return {
+                        id: index + 1,
+                        firstName: row[1] || "- -",
+                        lastName: row[2] || "- -",
+                        appName: row[4] || "- -",
+                        appDescription: row[5] || "- -",
+                        email: row[3] || '',
+                        imageUrl: row[6],
+                        link: row[7] || "#"
+                    };
+                });
+            } catch (error) {
+                console.error("Error fetching data from Google Sheets:", error);
+                
+                // Fallback to dummy data if the fetch fails
+                return [
+                    {
+                        id: 1,
+                        firstName: "Sample",
+                        lastName: "User",
+                        appName: "Sample AI App",
+                        appDescription: "This is a sample AI application showcasing machine learning capabilities",
+                        email: "sample@example.com",
+                        imageUrl: "https://via.placeholder.com/400x300/9d72ff/ffffff?text=Sample+AI+App",
+                        link: "#"
+                    },
+                    {
+                        id: 2,
+                        firstName: "Demo",
+                        lastName: "Developer",
+                        appName: "AI Assistant",
+                        appDescription: "An intelligent assistant powered by natural language processing",
+                        email: "demo@example.com",
+                        imageUrl: "https://via.placeholder.com/400x300/64ffda/000000?text=AI+Assistant",
+                        link: "#"
+                    }
+                ];
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', async function() {
+            const menuToggle = document.getElementById('menuToggle');
+            const navMenu = document.getElementById('navMenu');
+            const loadingElement = document.getElementById('loading');
+            const errorElement = document.getElementById('error');
+            const galleryGrid = document.getElementById('galleryGrid');
+            
+            // Mobile menu functionality
+            menuToggle.addEventListener('click', function() {
+                navMenu.classList.toggle('active');
+                menuToggle.classList.toggle('active');
+            });
+            
+            // Close menu when clicking on a nav link
+            const navLinks = document.querySelectorAll('.nav-menu a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    navMenu.classList.remove('active');
+                    menuToggle.classList.remove('active');
+                });
+            });
+            
+            // Fetch and display gallery data
+            try {
+                const data = await fetchGalleryDataFromGoogleSheets();
+                
+                // Hide loading spinner
+                loadingElement.style.display = 'none';
+                
+                // Filter out items without imageUrl and render the gallery
+                const validItems = data.filter(item => Boolean(item.imageUrl));
+                
+                if (validItems.length === 0) {
+                    errorElement.textContent = 'No gallery items found.';
+                    errorElement.style.display = 'block';
+                    return;
+                }
+                
+                galleryGrid.innerHTML = validItems.map(item => `
+                    <a href="${item.link}" target="_blank" class="gallery-card">
+                        <img src="${item.imageUrl}" alt="${item.firstName} ${item.lastName}" loading="lazy">
+                        <div class="gallery-overlay">
+                            <h4 class="gallery-name">${item.firstName} ${item.lastName}</h4>
+                            <h5 class="gallery-app-name">${item.appName}</h5>
+                            <p class="gallery-app-description">${item.appDescription}</p>
+                        </div>
+                    </a>
+                `).join('');
+                
+                // Add intersection observer for animations
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.style.opacity = '1';
+                            entry.target.style.transform = 'translateY(0)';
+                        }
+                    });
+                }, {threshold: 0.1});
+                
+                // Apply animation to gallery cards
+                document.querySelectorAll('.gallery-card').forEach((card, index) => {
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(20px)';
+                    card.style.transition = `opacity 0.5s ease ${index * 0.1}s, transform 0.5s ease ${index * 0.1}s`;
+                    observer.observe(card);
+                });
+                
+            } catch (error) {
+                console.error('Failed to load gallery:', error);
+                loadingElement.style.display = 'none';
+                errorElement.style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html> 

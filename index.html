@@ -2105,7 +2105,7 @@
                 <a href="#hero">Home</a>
                 <a href="#events">Events</a>
                 <a href="#programs">Programs</a>
-                <a href="#gallery">Gallery</a>
+                <a href="gallery.html">Projects Gallery</a>
                 <a href="#community">Join the Community</a>
                 <a href="#testimonials">Testimonials</a>
                 <a href="#founders">Founders</a>
@@ -2124,7 +2124,7 @@
                 <!-- <p>Share ideas, learn new skills, build AI Apps and grow together.</p> -->
                 <div class="hero-buttons">
                     <a href="https://discord.gg/uhFEhrAFZt" class="hero-btn primary-btn">JOIN DISCORD</a>
-                    <a href="https://lu.ma/vam" class="hero-btn secondary-btn">OUR EVENTS</a>
+                    <a href="https://lu.ma/vam" class="hero-btn secondary-btn">UPCOMING EVENTS</a>
                 </div>
             </div>
             
@@ -2200,13 +2200,6 @@
         </div>
     </section>
 
-    <section class="programs-section" id="gallery">
-        <div class="gallery-container">
-            <h2>Gallery</h2>
-            <div class="programs-grid gallery-grid"></div>
-        </div>
-    </section>
-    
     <section class="programs-section" id="community">
         <div class="container">
             <h2>Join the Community</h2>
@@ -2226,25 +2219,16 @@
                     </div>
                     <h3>Give a Talk</h3>
                     <p>Share your knowledge, research, or experience with our community. We welcome speakers of all levels.</p>
-                    <a href="https://forms.gle/PeST6kXsB5nezCeR9" target="_blank" class="community-btn">Apply to Speak</a>
+                    <a href="https://www.linkedin.com/in/issam-laradji-67ba1a99/" target="_blank" class="community-btn">Message Me Here</a>
                 </div>
                 
-                <!-- <div class="community-card">
-                    <div class="community-icon">
-                        <i class="fas fa-hands-helping"></i>
-                    </div>
-                    <h3>Volunteer</h3>
-                    <p>Help organize events, mentor newcomers, or contribute to our community projects.</p>
-                    <a href="https://forms.gle/yourVolunteerFormLink" target="_blank" class="community-btn">Volunteer</a>
-                </div>
-                 -->
                 <div class="community-card">
                     <div class="community-icon">
                         <i class="fab fa-whatsapp"></i>
                     </div>
                     <h3>WhatsApp Group</h3>
                     <p>Join our WhatsApp group to connect with other members, share resources, and stay updated.</p>
-                    <a href="https://forms.gle/Qf1bCBngerz9W8N38" target="_blank" class="community-btn">Join Group</a>
+                    <a href="https://chat.whatsapp.com/BqTDifLPlS84OTyDoKo2g4" target="_blank" class="community-btn">Join Group</a>
                 </div>
             </div>
         </div>
@@ -2335,55 +2319,6 @@
 
     <!-- Add JavaScript for mobile menu toggle -->
     <script>
-        const GOOGLE_SHEET_ID = "1vhh6YxNM40jJVT2yZEVvnbXGotCiU1gtZBlx-yrUpx0";
-
-        async function fetchGalleryDataFromGoogleSheets() {
-            try {
-                // Using the public CSV export URL which doesn't require an API key
-                const response = await fetch(
-                    `https://docs.google.com/spreadsheets/d/${GOOGLE_SHEET_ID}/gviz/tq?tqx=out:csv`
-                );
-
-                if (!response.ok) {
-                    throw new Error(`Failed to fetch data: ${response.statusText}`);
-                }
-
-                // Parse the CSV data
-                const csvText = await response.text();
-
-                const result = Papa.parse(csvText, {
-                    header: false,
-                    skipEmptyLines: true
-                });
-
-                const rows = result.data;
-
-                if (rows?.length <= 1) {
-                    throw new Error("No data found in the spreadsheet");
-                }
-                
-                // Assuming the first row contains headers
-                const dataRows = rows.slice(1);
-
-                // Map the rows to our AppCardData format
-                return dataRows.map((row, index) => {
-                    return {
-                        id: index + 1,
-                        firstName: row[1] || "- -",
-                        lastName: row[2] || "- -",
-                        appName: row[4] || "- -",
-                        appDescription: row[5] || "- -",
-                        email: row[3] || '',
-                        imageUrl: row[6],
-                        link: row[7] || "#"
-                    };
-                });
-            } catch (error) {
-                console.error("Error fetching data from Google Sheets:", error);
-                return [];
-            }
-        }
-
         document.addEventListener('DOMContentLoaded', async function() {
             const menuToggle = document.getElementById('menuToggle');
             const navMenu = document.getElementById('navMenu');
